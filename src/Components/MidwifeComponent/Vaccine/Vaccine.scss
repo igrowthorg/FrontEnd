@@ -1,0 +1,36 @@
+.vaccine-container {
+    width: 100%;
+    height: 78vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    // background-color: rgb(247, 145, 145);
+
+    .card-fram {
+        display: grid;
+        align-items: center;
+        justify-content: center;
+        grid-template-columns: auto auto auto auto;
+        grid-auto-flow: row;
+        grid-gap: 50px;
+        width: 98%;
+        height: 95%;
+        // background-color: white;
+        overflow-y: auto;
+
+        .card {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 250px;
+            height: 150px;
+            border-radius: 10px;
+            border: solid blue 1px;
+
+            &:hover {
+                cursor: pointer;
+                transform: scale(1.03);
+            }
+        }
+    }
+}

@@ -1,0 +1,39 @@
+.admin-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+
+    .navigation-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-end;
+        width: 100%;
+        height: 10vh;
+        background-color: #51414F;
+
+        ul {
+            display: flex;
+            width: 50%;
+            list-style: none;
+            justify-content: space-around;
+            color: white;
+
+            li {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 160px;
+                height: 40px;
+                border-radius: 8px;
+
+                &:hover {
+                    cursor: pointer;
+                    background-color: black;
+                }
+            }
+        }
+    }
+}

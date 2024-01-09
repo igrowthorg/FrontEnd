@@ -1,0 +1,124 @@
+.midwifeAdd-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    // transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.438);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+
+    .card-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 30%;
+        height: 70vh;
+        background-color: white;
+        // background-color: red;
+        border-radius: 10px;
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 8vh;
+            // background-color: red;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 65vh;
+            // background-color: blue;
+            overflow: hidden;
+
+            .input-section {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+                // height: 20vh;
+                height: 100%;
+                // margin-top: 50px;
+                // background-color: yellow;
+
+                .input-wrapper {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    width: 100%;
+                    height: 100%;
+                    // background-color: green;
+
+                    .inputfieds {
+                        border-radius: 6px;
+                        width: 88%;
+                        height: 30px;
+                        border: 0.1px solid black;
+                        padding-left: 10px;
+                        margin-top: 10px;
+
+                        input {}
+                    }
+                }
+            }
+
+            .submission-btn {
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+                width: 100%;
+                height: 10vh;
+                margin-top: 10px;
+                // background-color: rgb(54, 255, 47);
+
+                .cancel-btn {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 150px;
+                    height: 40px;
+                    // background-color: red;
+                    border: solid 1px red;
+                    border-radius: 10px;
+                    // color: white;
+                    margin-right: 28px;
+
+                    &:hover {
+                        background-color: red;
+                        color: white;
+                        cursor: pointer;
+                    }
+                }
+
+                .submit-btn {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border: solid 1px rgb(3, 91, 206);
+                    width: 150px;
+                    height: 40px;
+                    // background-color: rgb(3, 91, 206);
+                    border-radius: 10px;
+                    // color: white;
+                    margin-right: 10px;
+
+                    &:hover {
+                        background-color: rgb(3, 91, 206);
+                        color: white;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+}

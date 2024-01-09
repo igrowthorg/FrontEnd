@@ -1,0 +1,94 @@
+.login-container {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    z-index: 100;
+    position: fixed;
+}
+.login-container .login-card-container {
+    display: flex;
+    flex-direction: column;
+    width: 440px;
+    height: 85vh;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.login-container .login-card-container .card-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px 10px 0 0;
+    height: 15vh;
+    width: 95%;
+    background-color: #afafee;
+    margin-top: 15px;
+}
+.login-container .login-card-container .body-section {
+    display: flex;
+    flex-direction: column;
+    border-radius: 0 0 10px 10px;
+    width: 100%;
+    height: 75vh;
+}
+.login-container .login-card-container .body-section form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-container .login-card-container .body-section form select {
+    margin-top: 25px;
+    margin-bottom: 25px;
+    height: 30px;
+}
+
+.login-container .login-card-container .body-section form .input-feild-container {
+    width: 100%;
+    height: 15vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+.login-container .login-card-container .body-section form .input-feild-container .label-container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 81%;
+    height: auto;
+    margin-bottom: 5px;
+}
+.login-container .login-card-container .body-section form .input-feild-container .label-container label {
+    font-size: 20px;
+}
+.login-container .login-card-container .body-section form .input-feild-container input {
+    width: 80%;
+    height: 35px;
+}
+.login-container .login-card-container .body-section form .error-massage {
+    color: red;
+}
+.login-container .login-card-container .body-section form .submitButton {
+    width: 180px;
+    height: 40px;
+    margin-top: 15px;
+}
+.login-container .login-card-container .body-section form .submitButton input {
+    border: none;
+    width: 100%;
+    height: 100%;
+    background-color: #f80;
+    color: white;
+    border-radius: 8px;
+}
+.login-container .login-card-container .body-section form .submitButton input:hover {
+    cursor: pointer;
+    background-color: orangered;
+}

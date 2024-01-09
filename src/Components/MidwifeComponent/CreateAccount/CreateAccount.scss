@@ -1,0 +1,459 @@
+.CreateAccount-container {
+    width: 100%;
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    // background-color: rgb(250, 148, 148);
+
+    .CreateAccount-left {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 50%;
+        height: 100%;
+        // background-color: rgb(255, 179, 179);
+
+        h3 {
+            width: 100%;
+            height: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-left: 50px;
+        }
+
+        .parent-section-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            height: 10vh;
+            background-color: #dc8afd;
+
+            input {
+                margin-left: 20px;
+                padding-left: 4px;
+                width: 250px;
+                height: 25px;
+                // margin-right: 20px;
+            }
+
+            .icon {
+                margin-right: 20px;
+
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+        }
+
+        .parent-section-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 80vh;
+            // background-color: rgb(243, 255, 130);
+
+            .detail-section {
+                width: 98%;
+                height: 90%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                // justify-content: center;
+                background-color: white;
+                overflow-y: auto;
+
+                table {
+                    margin-top: 10px;
+                    width: 98%;
+                    text-align: center;
+                    // border: solid black 1px;
+                    font-family: Arial, Helvetica, sans-serif;
+                    border-collapse: collapse;
+        
+                    td, th {
+                        border: 1px solid #ddd;
+                        padding: 8px;
+                    }
+        
+                    tr:nth-child(even){
+                        background-color: #f2f2f2;
+                    }
+        
+                    thead {
+                        background-color: rgb(178, 63, 255);
+                        // background-color: #04AA6D;
+                        color: white;
+                    }
+        
+                    tbody {
+        
+                        tr {
+        
+                            .crud-btn {
+                                // width: 150px;
+                                display: flex;
+                                // flex-direction: column;
+                                // align-items: center;
+                                // justify-content: center;
+                
+                                .top-detail {
+                                    width: 50%;
+                                    height: 32px;
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                    // background-color: green;
+                                    border: solid green 1px;
+                                    border-radius: 4px;
+                                    // margin-bottom: 4px;
+                                    margin-right: 4px;
+                                    transition: 0.1s ease-in-out;
+        
+                                    &:hover {
+                                        background-color: rgb(137, 255, 137);
+                                        cursor: pointer;
+                                    }
+                                }
+                
+                                .update {
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                    width: 50%;
+                                    height: 32px;
+                                    // background-color: blue;
+                                    border: solid blue 1px;
+                                    border-radius: 4px;
+                                    transition: 0.1s ease-in-out;
+    
+                                    &:hover {
+                                        background-color: rgb(129, 129, 255);
+                                        cursor: pointer;
+                                        color: white;
+                                    }
+                                } 
+                            }
+        
+                            .babyDetail-view-container {
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                width: 100%;
+                                height: 100vh;
+                                background-color: rgba(0, 0, 0, 0.774);
+                                position: fixed;
+                                top: 0;
+                                left: 0;
+                                z-index: 10;
+                                
+                                    .cardView {
+                                        display: flex;
+                                        flex-direction: column;
+                                        align-items: center;
+                                        width: 95%;
+                                        height: 95vh;
+                                        background-color: white;
+                                        border-radius: 10px;
+                                        overflow-y: auto;
+                                        overflow-x: hidden;
+                                
+                                        .close-icon {
+                                            display: flex;
+                                            align-items: center;
+                                            justify-content: flex-end;
+                                            width: 100%;
+                                            height: 8%;
+                                            z-index: 10;
+                                
+                                            .icon {
+                                                padding-right: 5px;
+                                                // padding-top: 5px;
+                                
+                                                &:hover {
+                                                    transform: scale(1.1);
+                                                    cursor: pointer;
+                                                }
+                                            }
+                                        }
+                                
+                                        .card-section {
+                                            width: 100%;
+                                            // height: 92%;
+                                            // background-color: red;
+                                            display: flex;
+                                            flex-direction: column;
+                                            align-items: center;
+                                            justify-content: center;
+        
+                                            .top-section {
+                                                width: 100%;
+                                                height: 30vh;
+                                                display: flex;
+                                                flex-direction: column;
+                                                margin-bottom: 40px;
+                                                align-items: center;
+                                                justify-content: center;
+                                                // background-color: rgb(236, 177, 177);
+        
+                                                h3 {
+                                                    display: flex;
+                                                    align-items: center;
+                                                    justify-content: flex-start;
+                                                    margin-left: 50px;
+                                                    padding-top: 30px;
+                                                    width: 100%;
+                                                }
+        
+                                                .detail-body {
+                                                    width: 100%;
+                                                    display: grid;
+                                                    grid-template-columns: auto auto auto;
+                                                    grid-auto-flow: row;
+                                                    // background-color: red;
+                    
+                                                    .detail {
+                                                        margin-left: 40px;
+                                                        display: flex;
+                                                        align-items: center;
+                                                        justify-content: flex-start;
+                        
+                                                        h4 {
+                                                            margin-left: 50px;
+                                                            margin-right: 5px;
+                                                        }
+                                                    }
+                                                }
+                    
+                                            }
+        
+                                            .bottom-section {
+                                                width: 100%;
+                                                // height: 60vh;
+                                                display: flex;
+                                                align-items: center;
+                                                justify-content: center;
+                                                // background-color: rgb(169, 169, 243);
+        
+                                                .bottom-left {
+                                                    width: 50%;
+                                                    // height: 100%;
+                                                    display: flex;
+                                                    flex-direction: column;
+                                                    align-items: center;
+                                                    justify-content: center;
+                                                    // background-color: rgb(238, 165, 165);
+        
+                                                    h3 {
+                                                        width: 100%;
+                                                        margin-left: 50px;
+                                                        display: flex;
+                                                        align-items: flex-start;
+                                                    }
+        
+                                                    .vaccine-card-fram {
+                                                        width: 95%;
+                                                        // height: 100%;
+                                                        display: grid;
+                                                        grid-template-columns: auto auto auto;
+                                                        grid-gap: 15px;
+                                                        // background-color: red;
+                                                        margin-bottom: 30px;
+        
+                                                        .vaccine-fram {
+                                                            display: flex;
+                                                            align-items: center;
+                                                            justify-content: center;
+                                                            width: 140px;
+                                                            height: 60px;
+                                                            // background-color: gray;
+                                                            background-color: white;
+                                                            border-radius: 8px;
+                                                            box-shadow: 0 4px 16px rgba(17,17,26,.1), 0 8px 24px rgba(17,17,26,.1), 0 16px 56px rgba(17,17,26,.1);
+        
+                                                            &:hover {
+                                                                cursor: pointer;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+        
+                                                .bottom-right {
+                                                    width: 50%;
+                                                    height: 100%;
+                                                    display: flex;
+                                                    flex-direction: column;
+                                                    overflow-x: hidden;
+                                                    align-items: center;
+                                                    // justify-content: center;
+                                                    // background-color: rgb(163, 163, 238);
+        
+                                                    h3 {
+                                                        width: 100%;
+                                                        margin-left: 50px;
+                                                        display: flex;
+                                                        align-items: flex-start;
+                                                    }
+        
+                                                    .development-activites-top {
+                                                        display: grid;
+                                                        grid-template-columns: auto auto auto auto auto;
+                                                        grid-auto-flow: row;
+                                                        align-items: center;
+                                                        justify-content: center;
+                                                        width: 98%;
+                                                        height: 20vh;
+                                                        grid-gap: 15px;
+                                                        // background-color: red;
+        
+                                                        .month-fram {
+                                                            display: flex;
+                                                            align-items: center;
+                                                            justify-content: center;
+                                                            width: 80px;
+                                                            height: 40px;
+                                                            // background-color: gray;
+                                                            background-color: white;
+                                                            border-radius: 8px;
+                                                            box-shadow: 0 4px 16px rgba(17,17,26,.1), 0 8px 24px rgba(17,17,26,.1), 0 16px 56px rgba(17,17,26,.1);
+                                                            
+                                                            &:hover {
+                                                                cursor: pointer;
+                                                            }
+                                                        }
+                                                    }
+        
+                                                    .development-activites-bottom {
+                                                        width: 100%;
+                                                        height: 68vh;
+                                                        display: flex;
+                                                        flex-direction: column;
+                                                        align-items: center;
+                                                        justify-content: center;
+                                                        // background-color: rgb(143, 143, 236);
+                                                    
+                                                        table {
+        
+                                                            .number {
+                                                                width: 50px;
+                                                            }
+                                                        }
+        
+                                                        .button {
+                                                            display: flex;
+                                                            align-items: center;
+                                                            justify-content: center;
+                                                            width: 80%;
+                                                            // background-color: red;
+                                                            margin-top: 10px;
+                                                            margin-bottom: 10px;
+        
+                                                            .input-field {
+                                                                // margin-top: 5px;
+                                                                // margin-bottom: 10px;
+                                                                height: 30px;
+                                                                width: 80%;
+                                                            }
+        
+                                                            .submit-btn {
+                                                                width: 100px;
+                                                                height: 35px;
+                                                                margin-left: 4px;
+                                                                background-color: hwb(240 22% 0%);
+                                                                border: none;
+                                                                border-radius: 8px;
+                                                                color: white;
+        
+                                                                &:hover {
+                                                                    background-color: blue;
+                                                                    cursor: pointer;
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .CreateAccount-right {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 50%;
+        height: 100%;
+        // background-color: hwb(240 60% 7%);
+        overflow-x: hidden;
+
+        h3 {
+            width: 100%;
+            height: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-left: 50px;
+        }
+
+        .body-section {
+            width: 95%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #ddd;
+            overflow-y: auto;
+              
+            form {
+                width: 80%;
+                margin-top: 100px;
+
+                .form-group {
+                    margin: 10px 0;
+    
+                    label {
+                        display: block;
+                        margin-bottom: 5px;
+                        font-weight: bold;
+                    }
+    
+                      input[type="text"],
+                      input[type="number"],
+                      input[type="date"] {
+                        width: 100%;
+                        padding: 6px;
+                        border: 1px solid #ccc;
+                        border-radius: 4px;
+                    }
+                }
+    
+                    button[type="submit"] {
+                    width: 40%;
+                    padding: 8px;
+                    background-color: rgb(208, 0, 255);
+                    color: #fff;
+                    border: none;
+                    border-radius: 4px;
+                    cursor: pointer;
+                    transition: background-color 0.3s;
+                    margin-bottom: 30px;
+                  
+                    &:hover {
+                        background-color: rgb(191, 95, 232);
+                    }
+                }
+            }
+        }
+    }
+}
