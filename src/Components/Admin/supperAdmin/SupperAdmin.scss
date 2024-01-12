@@ -1,0 +1,73 @@
+.superAdmin-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 98%;
+    height: 80vh;
+    // background: #b0b7c2; 
+    background-color: rgb(173, 129, 255);
+    margin-top: 10px;
+    border-radius: 10px;
+
+    .head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 98%;
+        height: 10vh;
+        background-color: #ffffff;
+        margin-top: 10px;
+        border-radius: 6px;
+
+        h2 {
+            padding-left: 50px;
+        }
+
+        .icon {
+            margin-right: 20px;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+
+    .body {
+        display: flex;
+        flex-direction: column;
+        width: 98%;
+        height: 70vh;
+        align-items: center;
+        // justify-content: center;
+        background-color: rgb(234, 214, 243);
+        margin-top: 10px;
+        overflow-y: auto;
+
+        .card-fram {
+            display: flex;
+            // justify-content: space-around;
+            // align-items: center;
+            width: 98%;
+            // height: 15vh;
+            height: 8vh;
+            // background-color: red;
+            background-color: white;
+            border-radius: 10px;
+            margin-top: 15px;
+            padding-top: 15px;
+            padding-bottom: 15px;
+
+            .user-name {
+                width: 150px;
+            }
+
+            p {
+                width: 280px;
+                // background-color: red;
+                font-size: 16px;
+                font-weight: bold;
+                margin-left: 50px;
+            }
+        }
+    }
+}

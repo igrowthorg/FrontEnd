@@ -11,6 +11,8 @@ export default function MedicalOfficer() {
         { name: "Email", value: "Thambala", type: "email" },
     ]
 
+    const [trigger, setTrigger] = useState(false);
+
     const [getArea, setGetArea] = useState([]);
 
     const [selectedArea, setSelectedArea] = useState("");
@@ -118,7 +120,7 @@ export default function MedicalOfficer() {
                 }
                 else console.log("No data found");
             }).catch(err => console.log(err))
-    }, [])
+    }, [trigger])
 
     const submit = async (e) => {
         e.preventDefault();
@@ -149,8 +151,8 @@ export default function MedicalOfficer() {
             await instance.put(`/admin/officer/${selectedMedicalOfficer.officer_id}`, formData);
 
             // Close the update popup
-            // setShowMidwifeUpdate(false);
-            // setTrigger(!trigger);
+            setShowMedicalOfficerDetail(false);
+            setTrigger(!trigger);
 
         } catch (error) {
             console.error("Error updating Midwife: ", error);
@@ -184,31 +186,31 @@ export default function MedicalOfficer() {
     console.log(`${inputDate.getFullYear()}-${inputDate.getMonth() + 1}-${inputDate.getDate()}`);
 
     return (
-        <div className='midwife-container'>
-            {displayMedicalOfficerAdd ? <MidwifeAdd setDisplayMedicalOfficerAdd={setDisplayMedicalOfficerAdd} /> : null}
+        <div className='midwife-container' style={{ height: '75vh' }}>
+            {displayMedicalOfficerAdd ? <MidwifeAdd setDisplayMedicalOfficerAdd={setDisplayMedicalOfficerAdd} setTrigger={setTrigger} /> : null}
             <div className="head">
                 <div className="name"><h2>Medical Officers</h2></div>
                 <AiFillPlusSquare fontSize={50} className='icon' onClick={showCode} />
             </div>
-            <div className='body'>
+            <div className='body' style={{ height: '61vh', borderRadius: '0 0 8px 8px' }}>
                 {
                     medicalOfficer.map((data, index) => {
                         return (
                             <div className="card-fram" key={index}>
                                 <div className="image-container">
                                     <div className='detail'>
-                                        <h3 style={{ marginLeft: '50px' }}>{data.area_id}</h3>
+                                        <h3 style={{ marginLeft: '50px' }}>{data.area_name}</h3>
                                     </div>
                                 </div>
                                 <div className="nameOfCard"><h3>{data.officer_name}</h3></div>
                                 <div className="crud-function">
                                     <div className="crud-btns">
                                         <div className="top">
-                                            <div className="view-btn" onClick={() => handleViewDetail(data)}>View Details</div>
+                                            <div className="view-btn" onClick={() => handleViewDetail(data)} style={{ width: '150px' }} >View Details</div>
                                         </div>
-                                        <div className="bottom">
-                                            <div className="update" onClick={() => handleUpdateWindow(data)}>Update</div>
-                                            <div className="delete">Delete</div>
+                                        <div className="bottom" style={{ width: 'auto' }}>
+                                            <div className="update" onClick={() => handleUpdateWindow(data)} style={{ width: '150px' }} setTrigger={setTrigger}>Update</div>
+                                            {/* <div className="delete">Delete</div> */}
                                         </div>
                                     </div>
                                 </div>
@@ -261,7 +263,7 @@ export default function MedicalOfficer() {
                                     //     </div>
                                     // </div>
                                     <div className='midwifeAdd-container'>
-                                        <div className="card-container">
+                                        <div className="card-container" style={{ height: '80vh' }}>
                                             <div className="header">
                                                 <h4>Update the Midwife</h4>
                                             </div>
@@ -276,10 +278,10 @@ export default function MedicalOfficer() {
                                                             ))}
                                                         </select>
                                                         <input type="text" name="medicalOfficer-name" id='medicalOfficer-name' placeholder='Enter the medicalOfficer Name' className='inputfieds' required value={medicalOfficerName} onChange={handlemedicalOfficerNameChange} />
-                                                        <input type="text" name="medicalOfficer-nic" id='medicalOfficer-nic' placeholder='Enter the NIC' className='inputfieds' required value={nic} onChange={handleNicChange} />
-                                                        <input type="text" name="medicalOfficer-service-start-date" id='medicalOfficer-service-start-date' placeholder='Enter the Service Start Date' className='inputfieds' required value={serviceStartDate} onChange={handleserviceStartDatehange} />
-                                                        <input type="text" name="medicalOfficer-service-id" id='medicalOfficer-service-id' placeholder='Enter the Service_Id' className='inputfieds' required value={serviceId} onChange={handleServiceIdChange} />
-                                                        <input type="text" name="medicalOfficer-email" id='medicalOfficer-email' placeholder='Enter the Email' className='inputfieds' required value={email} onChange={handleEmailChange} />
+                                                        <input type="text" name="medicalOfficer-nic" id='medicalOfficer-nic' disabled={true} placeholder='Enter the NIC' className='inputfieds' required value={nic} onChange={handleNicChange} />
+                                                        <input type="text" name="medicalOfficer-service-start-date" disabled={true} id='medicalOfficer-service-start-date' placeholder='Enter the Service Start Date' className='inputfieds' required value={serviceStartDate} onChange={handleserviceStartDatehange} />
+                                                        <input type="text" name="medicalOfficer-service-id" disabled={true} id='medicalOfficer-service-id' placeholder='Enter the Service_Id' className='inputfieds' required value={serviceId} onChange={handleServiceIdChange} />
+                                                        <input type="text" name="medicalOfficer-email" disabled={true} id='medicalOfficer-email' placeholder='Enter the Email' className='inputfieds' required value={email} onChange={handleEmailChange} />
                                                         <input type="text" name="medicalOfficer-mobile" id='medicalOfficer-mobile' placeholder='Enter the Mobile Number' className='inputfieds' required value={phone} onChange={handleMobileChange} />
                                                     </div>
                                                 </div>
