@@ -9,7 +9,6 @@ export default function MinwifeComponent() {
       <Cover />
       <div className='navigation-container'>
         <ul>
-          <li onClick={() => setActive('create_account')} style={active === 'create_account' ? { background: '#fff', color: 'green', fontWeight: 'bold' } : {}}>Create Account</li>
           <li onClick={() => setActive('news-feed')} style={active === 'news-feed' ? { background: '#fff', color: 'green', fontWeight: 'bold' } : {}}>News Feed</li>
         </ul>
       </div>
