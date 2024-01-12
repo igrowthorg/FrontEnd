@@ -20,16 +20,18 @@ export default function MedicalOfficerAdd(props) {
             }).catch(err => console.log(err))
     }, [])
 
+    // Handle area selection in form
     const handleAreaChange = (event) => {
         const selectedValue = event.target.value;
         setSelectedArea(selectedValue);
         console.log(selectedArea);
     };
 
+    //Prevent default form submission
     const submit = async (e) => {
         e.preventDefault();
 
-
+    // Gathering form data from event object
         const formData = {
             officer_name: e.target['medicalOfficer-name'].value,
             service_start_date: e.target['medicalOfficer-service-start-date'].value,
@@ -40,12 +42,14 @@ export default function MedicalOfficerAdd(props) {
             area_id: selectedArea
         }
 
+        //Check if an Area is selected
         if (selectedArea === "select_area") {
             alert("Please select an area");
             document.getElementById('select_area_002').focus();
             return;
         }
 
+        // Setting the form to waiting state
         setWaiting(true);
 
         try {
@@ -76,6 +80,8 @@ export default function MedicalOfficerAdd(props) {
                 <form onSubmit={submit}>
                     <div className="input-section">
                         <div className="input-wrapper">
+
+                        {/* Area Selection Dropdown */}
                             <select className='inputfieds' style={{ height: '35px', width: '91%' }} id='select_area_002' onChange={handleAreaChange}>
                                 <option value="select_area" style={{ display: 'none' }}>Select an Area</option>
                                 {getArea.length > 0 && getArea.map(area => (

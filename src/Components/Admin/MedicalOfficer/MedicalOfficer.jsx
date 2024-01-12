@@ -42,6 +42,7 @@ export default function MedicalOfficer() {
     const handlemedicalOfficerNameChange = (e) => {
         setMedicalOfficerName(e.target.value);
     };
+    
 
     const handleNicChange = (e) => {
         setNic(e.target.value);
