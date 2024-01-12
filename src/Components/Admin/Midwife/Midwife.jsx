@@ -11,6 +11,8 @@ export default function Mifwife() {
         { name: "Email", value: "Thambala", type: "email" },
     ]
 
+    const [trigger, setTrigger] = useState(false);
+
     const [getArea, setGetArea] = useState([]);
 
     const [selectedArea, setSelectedArea] = useState("");
@@ -118,21 +120,10 @@ export default function Mifwife() {
                 }
                 else console.log("No data found");
             }).catch(err => console.log(err))
-    }, [])
+    }, [trigger])
 
     const submit = async (e) => {
         e.preventDefault();
-
-        // Prepare form data
-        // const formData = new FormData();
-
-        // formData.append('name', midwifeName);
-        // formData.append('service_start_date', serviceStartDate)
-        // formData.append('nic', nic);
-        // formData.append('email', email);
-        // formData.append('phone', phone);
-        // formData.append('service_id', serviceId);
-        // formData.append('area_id',);
 
         const formData = {
             name: e.target['midwife-name'].value,
@@ -148,66 +139,57 @@ export default function Mifwife() {
             await instance.put(`/admin/midwife/${selectedMidwife.midwife_id}`, formData);
 
             // Close the update popup
-            // setShowMidwifeUpdate(false);
-            // setTrigger(!trigger);
+            setShowMidwifeUpdate(false);
+            setTrigger(!trigger);
 
         } catch (error) {
             console.error("Error updating Midwife: ", error);
         }
     };
 
-    // const handleDeleteItem = (midwife) => {
-    //     // Display a confirmation dialog
-    //     const confirmDelete = window.confirm(`Are you sure you want to delete the category "${midwife.name}?"`);
-
-    //     const chckAuth = async () => {
-    //         // get token from local storage
-    //         const token = await localStorage.getItem('loginToken');
-    //         if (confirmDelete) {
-    //             try {
-    //                 await instance.delete(`/item/${item.item_id}`, config);
-    //                 // After successful deletion, refetch categories
-    //                 setTrigger(!trigger);
-
-    //             } catch (error) {
-    //                 console.error("Error deleting category: ", error);
-    //             }
+    // const handleDeleteMidwife = async (midwife) => {
+    //     const confirmDelete = window.confirm(`Are you sure, you want to delete "${midwife.name}"?`);
+    //     if (confirmDelete) {
+    //         try {
+    //             await instance.delete(`/admin/midwife/${midwife.midwife_id}`);
+    //             setTrigger(!trigger);
+    //         } catch (error) {
+    //             console.error("Error deleting Midwife: ", error);
     //         }
-
     //     }
-    //     chckAuth();
     // };
+
 
     const inputDateString = "2011-12-09T18:30:00.000Z";
     const inputDate = new Date(inputDateString);
     console.log(`${inputDate.getFullYear()}-${inputDate.getMonth() + 1}-${inputDate.getDate()}`);
 
     return (
-        <div className='midwife-container'>
-            {displayMidwifeAdd ? <MidwifeAdd setDisplayMidwifeAdd={setDisplayMidwifeAdd} /> : null}
+        <div className='midwife-container' style={{ height: '75vh' }}>
+            {displayMidwifeAdd ? <MidwifeAdd setDisplayMidwifeAdd={setDisplayMidwifeAdd} setTrigger={setTrigger} /> : null}
             <div className="head">
                 <div className="name"><h2>Midwife</h2></div>
                 <AiFillPlusSquare fontSize={50} className='icon' onClick={showCode} />
             </div>
-            <div className='body'>
+            <div className='body' style={{ height: '61vh', borderRadius: '0 0 8px 8px' }}>
                 {
                     getAllMidwifes.map((data, index) => {
                         return (
                             <div className="card-fram" key={index}>
                                 <div className="image-container">
                                     <div className='detail'>
-                                        <h3 style={{ marginLeft: '50px' }}>{data.area_id}</h3>
+                                        <h3 style={{ marginLeft: '50px' }}>{data.area_name}</h3>
                                     </div>
                                 </div>
                                 <div className="nameOfCard"><h3>{data.name}</h3></div>
                                 <div className="crud-function">
                                     <div className="crud-btns">
                                         <div className="top">
-                                            <div className="view-btn" onClick={() => handleViewDetail(data)}>View Details</div>
+                                            <div className="view-btn" onClick={() => handleViewDetail(data)} style={{ width: '150px' }}>View Details</div>
                                         </div>
-                                        <div className="bottom">
-                                            <div className="update" onClick={() => handleUpdateWindow(data)}>Update</div>
-                                            <div className="delete">Delete</div>
+                                        <div className="bottom" style={{ width: 'auto' }}>
+                                            <div className="update" setTrigger={setTrigger} onClick={() => handleUpdateWindow(data)} style={{ width: '150px' }}>Update</div>
+                                            {/* <div className="delete" style={{ width: '150px' }} onClick={() => handleDeleteMidwife(data)}>Delete</div> */}
                                         </div>
                                     </div>
                                 </div>
@@ -227,7 +209,7 @@ export default function Mifwife() {
                                                         <div className='detail'><h4>Service Start Date :</h4>{selectedMidwife.service_start_date}</div>
                                                         <div className='detail'><h4>Gmail :</h4>{selectedMidwife.email}</div>
                                                         <div className='detail'><h4>Mobile :</h4>{selectedMidwife.phone}</div>
-                                                        <div className='detail'><h4>Area :</h4>{selectedMidwife.area_id}</div>
+                                                        <div className='detail'><h4>Area :</h4>{selectedMidwife.area_name}</div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -260,7 +242,7 @@ export default function Mifwife() {
                                     //     </div>
                                     // </div>
                                     <div className='midwifeAdd-container'>
-                                        <div className="card-container">
+                                        <div className="card-container" style={{ height: '80vh' }}>
                                             <div className="header">
                                                 <h4>Update the Midwife</h4>
                                             </div>
