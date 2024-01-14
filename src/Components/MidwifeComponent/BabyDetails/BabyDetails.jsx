@@ -7,31 +7,57 @@ import instance from '../../../utility/AxiosInstance'
 const GetVaccine = (props) => {
 
     const [vaccine, setVaccine] = useState(null);
+    const[trigger, setTrigger] = useState(false);
+
     const childID = props.childID;
 
     useEffect(() => {
-        const getData = async() => {
-            try{
+        const getData = async () => {
+            try {
                 const res = await instance.get(`midwife/child/vaccine/${childID}`);
                 setVaccine(res.data)
                 console.log(res.data);
             }
-            catch(err){
+            catch (err) {
                 console.log(err)
             }
         }
         getData()
-    },[childID])
+    }, [childID, trigger])
 
-    if(vaccine !== null) return(
+    const makeAsTaken = async (time_table_id, vaccine_id) => {
+        console.log(time_table_id, vaccine_id);
+
+        // Ask yes no question from user to make as taken confirm
+        const userConfirmation = window.confirm("Are you sure you want to make as taken?");
+
+        if (userConfirmation){
+            try{
+                const res = await instance.post(`/midwife/child/vaccine/${childID}/${time_table_id}/${vaccine_id}`);
+                console.log(res.data);
+                setTrigger(!trigger);
+                alert("Successfully made as taken")
+            }
+            catch(err){
+                console.log(err);
+                alert("Can't make as taken")
+            }
+        }
+
+    }
+
+    if (vaccine !== null) return (
         <div className='vaccine-card-fram'>
             {vaccine.map((data, index) => (
-                <div className='vaccine-fram' key={index} style={data.status === "eligible" ? {background: 'green'}: data.status === "not_eligible" ? {background: 'gray'}: data.status === "taken" ? {background: 'blue'}: null}>
-                    <p>{data.status}</p>
+                <div className='vaccine-fram' key={index} style={data.status === "eligible" ? { background: '#98fb98' } : data.status === "not_eligible" ? { background: '#dcdcdc' } : data.status === "taken" ? { background: '#6495ed' } : null}>
+                    <p className='vaccine_name'>{data.vaccine_name}</p>
+                    {
+                        data.status === "eligible" && <button onClick={() => makeAsTaken(data.time_table_id, data.vaccine_id)}>Make as taken</button>
+                    }
                 </div>
             ))}
         </div>
-        
+
     )
 }
 
@@ -85,21 +111,22 @@ export default function BabyDetails() {
 
     const [selectedBaby, setSelectedBaby] = useState(null);
 
-    const [apiData, setApiData] = useState(null);
+    const [apiData, setApiData] = useState([]);
+
+    const [searchQuery, setSearchQuery] = useState('');
 
     useEffect(() => {
-        const getData = async() => {
-            try{
+        const getData = async () => {
+            try {
                 const res = await instance.get('/midwife/child');
-                console.log("USHANNNNNNNNNNNNNN", res.data);
                 setApiData(res.data);
             }
-            catch(err){
+            catch (err) {
                 console.log(err)
             }
         }
         getData()
-    },[])
+    }, [])
 
     const handleViewDetail = (babyDetail) => {
         setSelectedBaby(babyDetail);
@@ -111,12 +138,16 @@ export default function BabyDetails() {
         setShowDetail(false);
     }
 
+    const handleSearchChange = (event) => {
+        setSearchQuery(event.target.value);
+    };
 
-    if(apiData !== null) return (
+
+    if (apiData !== null) return (
         <div className='baby-details-container'>
             <div className='babyDetail-top'>
                 <div className='searchbar'>
-                    <input type="text" placeholder="Search.." name="search" className='search' />
+                    <input type="text" placeholder="Search.." name="search" className='search' value={searchQuery} onChange={handleSearchChange} />
                 </div>
             </div>
             <div className='babyDetail-bottom'>
@@ -135,117 +166,120 @@ export default function BabyDetails() {
                     </thead>
                     <tbody>
                         {
-                           apiData.map((data, index) => {
-                            return(
-                                <tr key={index}>
-                                <td>{index}</td>
-                                <td>{data.child_id}</td>
-                                <td>{data.child_name}</td>
-                                <td>{data.child_birthday.split('T')[0]}</td>
-                                <td>{data.child_gender}</td>
-                                <td>{data.guardian_name}</td>
-                                <td>{data.phone}</td>
-                                <td className='crud-btn'>
-                                    <div className='top-detail' onClick={() => handleViewDetail(data)}>View Detail</div>
-                                    <div className='bottom-detail'>
-                                        <div className='update'>Update</div>
-                                        <div className='delete'>Delete</div>
-                                    </div>
-                                </td>
+                            apiData.map((data, index) => {
+                                if ((data.child_id.toString().includes(searchQuery.toLowerCase()))) {
+                                    return (
+                                        <tr key={index}>
+                                            <td>{index + 1}</td>
+                                            <td>{data.child_id}</td>
+                                            <td>{data.child_name}</td>
+                                            <td>{data.child_birthday.split('T')[0]}</td>
+                                            <td>{data.child_gender}</td>
+                                            <td>{data.guardian_name}</td>
+                                            <td>{data.phone}</td>
+                                            <td className='crud-btn'>
+                                                <div className='top-detail' onClick={() => handleViewDetail(data)} >View Detail</div>
+                                                {/* <div className='bottom-detail'>
+                                                <div className='update'>Update</div>
+                                                <div className='delete'>Delete</div>
+                                                </div> */}
+                                            </td>
 
-                                {showDetail && selectedBaby && selectedBaby.no === data.no && (
-                                    <div className='babyDetail-view-container'>
-                                        <div className="cardView">
-                                            <div className="close-icon"><AiFillCloseCircle size={25} color='red' className='icon' onClick={handleCloseViewDetail} /></div>
-                                            <div className="card-section">
-                                                <div className='top-section'>
-                                                    <h3>Details:</h3>
-                                                    <div className='detail-body'>
-                                                        <div className='detail'><h4>Baby ID :</h4>{data.child_id}</div>
-                                                        <div className='detail'><h4>Name :</h4>{data.child_name}</div>
-                                                        <div className='detail'><h4>Birthday :</h4>{data.child_birthday.split('T')[0]}</div>
-                                                        <div className='detail'><h4>Gender :</h4>{data.child_gender}</div>
-                                                        <div className='detail'><h4>Gudiunt Name :</h4>{data.guardian_name}</div>
-                                                        <div className='detail'><h4>Address :</h4>{data.address}</div>
-                                                        <div className='detail'><h4>Mobile :</h4>{data.phone}</div>
-                                                        {/* <div className='detail'><h4>BMI :</h4>---</div>
+                                            {showDetail && selectedBaby && selectedBaby.no === data.no && (
+                                                <div className='babyDetail-view-container'>
+                                                    <div className="cardView">
+                                                        <div className="close-icon"><AiFillCloseCircle size={25} color='red' className='icon' onClick={handleCloseViewDetail} /></div>
+                                                        <div className="card-section">
+                                                            <div className='top-section'>
+                                                                <h3>Details:</h3>
+                                                                <div className='detail-body'>
+                                                                    <div className='detail'><h4>Children ID :</h4>{data.child_id}</div>
+                                                                    <div className='detail'><h4>Name :</h4>{data.child_name}</div>
+                                                                    <div className='detail'><h4>Birthday :</h4>{data.child_birthday.split('T')[0]}</div>
+                                                                    <div className='detail'><h4>Gender :</h4>{data.child_gender}</div>
+                                                                    <div className='detail'><h4>Gudiunt Name :</h4>{data.guardian_name}</div>
+                                                                    <div className='detail'><h4>Address :</h4>{data.address}</div>
+                                                                    <div className='detail'><h4>Gudiunt Mobile :</h4>{data.phone}</div>
+                                                                    <div className='detail'><h4>Bron Weight :</h4>{data.child_born_weight}</div>
+                                                                    {/* <div className='detail'><h4>BMI :</h4>---</div>
                                                         <div className='detail'><h4>Stage :</h4>----</div> */}
-                                                    </div>
-                                                </div>
-                                                <hr style={{ width: '1200px' }} />
-                                                <div className='bottom-section'>
-                                                    <div className='bottom-left'>
-                                                        <h3>Vaccine Detail</h3>
-                                                        <GetVaccine childID={data.child_id} />
-                                                        
-                                                    </div>
-                                                    <hr style={{ height: '400px' }} />
-                                                    <div className='bottom-right'>
-                                                        <h3>Development Activites</h3>
-                                                        <div className='development-activites-top'>
-                                                            {month.map((data, index) => (
-                                                                <div className='month-fram' key={index}>
-                                                                    <p>{data.month}</p>
                                                                 </div>
-                                                            ))}
-                                                        </div>
-                                                        <div className='development-activites-bottom'>
-                                                            <table style={{ width: '80%', height: '50%' }}>
-                                                                <tr>
-                                                                    <td className='number'>1</td>
-                                                                    <td></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td className='number'>2</td>
-                                                                    <td></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td className='number'>3</td>
-                                                                    <td></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td className='number'>4</td>
-                                                                    <td></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td className='number'>5</td>
-                                                                    <td></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td className='number'>6</td>
-                                                                    <td></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td className='number'>7</td>
-                                                                    <td></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td className='number'>8</td>
-                                                                    <td></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td className='number'>9</td>
-                                                                    <td></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td className='number'>10</td>
-                                                                    <td></td>
-                                                                </tr>
-                                                            </table>
-                                                            <div className='button'>
-                                                                <input className='input-field' type='text' name='comment' placeholder='Enter Comment Here' />
-                                                                <input className='submit-btn' type="submit" value="Send" />
+                                                            </div>
+                                                            <hr style={{ width: '1200px' }} />
+                                                            <div className='bottom-section'>
+                                                                <div className='bottom-left'>
+                                                                    <h3>Vaccine Detail</h3>
+                                                                    <GetVaccine childID={data.child_id} />
+
+                                                                </div>
+                                                                <hr style={{ height: '400px' }} />
+                                                                <div className='bottom-right'>
+                                                                    <h3>Development Activites</h3>
+                                                                    <div className='development-activites-top'>
+                                                                        {month.map((data, index) => (
+                                                                            <div className='month-fram' key={index}>
+                                                                                <p>{data.month}</p>
+                                                                            </div>
+                                                                        ))}
+                                                                    </div>
+                                                                    <div className='development-activites-bottom'>
+                                                                        <table style={{ width: '80%', height: '50%' }}>
+                                                                            <tr>
+                                                                                <td className='number'>1</td>
+                                                                                <td></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td className='number'>2</td>
+                                                                                <td></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td className='number'>3</td>
+                                                                                <td></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td className='number'>4</td>
+                                                                                <td></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td className='number'>5</td>
+                                                                                <td></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td className='number'>6</td>
+                                                                                <td></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td className='number'>7</td>
+                                                                                <td></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td className='number'>8</td>
+                                                                                <td></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td className='number'>9</td>
+                                                                                <td></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td className='number'>10</td>
+                                                                                <td></td>
+                                                                            </tr>
+                                                                        </table>
+                                                                        <div className='button'>
+                                                                            <input className='input-field' type='text' name='comment' placeholder='Enter Comment Here' />
+                                                                            <input className='submit-btn' type="submit" value="Send" />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                )}
-                            </tr>
-                            )
-                           }) 
+                                            )}
+                                        </tr>
+                                    )
+                                }
+                            })
                         }
                         {/* {data.map((data, index) => (
                             <tr key={index}>

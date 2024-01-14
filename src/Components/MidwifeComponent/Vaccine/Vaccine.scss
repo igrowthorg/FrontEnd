@@ -1,35 +1,53 @@
-.vaccine-container {
+.main-container {
     width: 100%;
     height: 78vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    // background-color: rgb(247, 145, 145);
+    // background-color: red;
 
     .card-fram {
+        width: 100%;
+        height: 75vh;
         display: grid;
         align-items: center;
         justify-content: center;
-        grid-template-columns: auto auto auto auto;
-        grid-auto-flow: row;
         grid-gap: 50px;
-        width: 98%;
-        height: 95%;
-        // background-color: white;
+        grid-template-columns: auto auto auto;
+        grid-auto-flow: row;
+        // background-color: wheat;
         overflow-y: auto;
 
         .card {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 250px;
-            height: 150px;
+            flex-direction: column;
+            width: 350px;
+            height: 180px;
+            // background-color: white;
+            background-color: rgb(232, 203, 255);
             border-radius: 10px;
-            border: solid blue 1px;
+            box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.25);
+            transition: all 0.2s;
+            // margin: 20px;
+            padding: 20px;
 
             &:hover {
                 cursor: pointer;
-                transform: scale(1.03);
+            }
+
+            .vaccine-card-header {
+                display: flex;
+                align-items: center;
+                // justify-content: center;
+                width: 100%;
+                height: 20%;
+                // background-color: red;
+            }
+
+            .vaccine-card-body {
+                width: 100%;
+                height: 80%;
+                // background-color: yellow;  
             }
         }
     }
