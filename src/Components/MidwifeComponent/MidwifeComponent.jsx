@@ -31,6 +31,7 @@ export default function MinwifeComponent() {
               // active === 'view_development' ? <p>View Development</p> :
               active === 'create_account' ? <CreateAccount /> :
                 active === 'news-feed' ? <p>News Feed</p> : null
+                
       }
     </div>
   )
