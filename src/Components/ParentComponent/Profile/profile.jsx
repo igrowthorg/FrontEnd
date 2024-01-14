@@ -1,5 +1,5 @@
 import React, { useEffect, useState} from 'react'
-import './Profile.scss';
+import './profile.scss';
 import instance from '../../../utility/AxiosInstance';
 import { useNavigate } from 'react-router-dom'
 
