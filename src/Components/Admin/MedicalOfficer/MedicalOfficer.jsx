@@ -42,7 +42,6 @@ export default function MedicalOfficer() {
     const handlemedicalOfficerNameChange = (e) => {
         setMedicalOfficerName(e.target.value);
     };
-    
 
     const handleNicChange = (e) => {
         setNic(e.target.value);
@@ -80,7 +79,7 @@ export default function MedicalOfficer() {
     }
 
     const handleUpdateWindow = (midwifes) => {
-        setMedicalOfficerName(midwifes.name);
+        setMedicalOfficerName(midwifes.officer_name);
         setNic(midwifes.nic);
         setServiceStartDate(midwifes.service_start_date);
         setEmail(midwifes.email);
@@ -228,7 +227,7 @@ export default function MedicalOfficer() {
                                                         <div className='detail'><h4>Name :</h4>{selectedMedicalOfficer.officer_name}</div>
                                                         <div className='detail'><h4>Service ID :</h4>{selectedMedicalOfficer.service_id}</div>
                                                         <div className='detail'><h4>NIC :</h4>{selectedMedicalOfficer.nic}</div>
-                                                        <div className='detail'><h4>Service Start Date :</h4>{selectedMedicalOfficer.service_start_date}</div>
+                                                        <div className='detail'><h4>Service Start Date :</h4>{selectedMedicalOfficer.service_start_date.split('T')[0]}</div>
                                                         <div className='detail'><h4>Gmail :</h4>{selectedMedicalOfficer.email}</div>
                                                         <div className='detail'><h4>Mobile :</h4>{selectedMedicalOfficer.phone}</div>
                                                         <div className='detail'><h4>Area :</h4>{selectedMedicalOfficer.area_id}</div>
@@ -266,24 +265,24 @@ export default function MedicalOfficer() {
                                     <div className='midwifeAdd-container'>
                                         <div className="card-container" style={{ height: '80vh' }}>
                                             <div className="header">
-                                                <h4>Update the Midwife</h4>
+                                                <h4>Update the Medical Officers</h4>
                                             </div>
                                             <form onSubmit={submit}>
                                                 <div className="input-section">
                                                     <div className="input-wrapper">
                                                         {/* <input type="text" name="category-name" placeholder='Enter the Select Area'  required /> */}
-                                                        <select id='area' name='area' className='inputfieds' style={{ height: '35px', width: '91%' }} value={selectedArea} onChange={handleAreaChange}>
+                                                        <select id='area' name='area' className='inputfieds' style={{ height: '35px', width: '91%' }} value={medicalOfficer[0].area_id} disabled onChange={handleAreaChange} title='Officer Service Area'>
                                                             {/* <option value="">Select an Area</option> */}
                                                             {getArea.map(area => (
                                                                 <option key={area.area_id} value={area.area_id}>{area.area_name}</option>
                                                             ))}
                                                         </select>
-                                                        <input type="text" name="medicalOfficer-name" id='medicalOfficer-name' placeholder='Enter the medicalOfficer Name' className='inputfieds' required value={medicalOfficerName} onChange={handlemedicalOfficerNameChange} />
-                                                        <input type="text" name="medicalOfficer-nic" id='medicalOfficer-nic' disabled={true} placeholder='Enter the NIC' className='inputfieds' required value={nic} onChange={handleNicChange} />
-                                                        <input type="text" name="medicalOfficer-service-start-date" disabled={true} id='medicalOfficer-service-start-date' placeholder='Enter the Service Start Date' className='inputfieds' required value={serviceStartDate} onChange={handleserviceStartDatehange} />
-                                                        <input type="text" name="medicalOfficer-service-id" disabled={true} id='medicalOfficer-service-id' placeholder='Enter the Service_Id' className='inputfieds' required value={serviceId} onChange={handleServiceIdChange} />
-                                                        <input type="text" name="medicalOfficer-email" disabled={true} id='medicalOfficer-email' placeholder='Enter the Email' className='inputfieds' required value={email} onChange={handleEmailChange} />
-                                                        <input type="text" name="medicalOfficer-mobile" id='medicalOfficer-mobile' placeholder='Enter the Mobile Number' className='inputfieds' required value={phone} onChange={handleMobileChange} />
+                                                        <input type="text" name="medicalOfficer-name" id='medicalOfficer-name' placeholder='Enter the medicalOfficer Name' className='inputfieds' title='Name of Officer' required value={medicalOfficerName} onChange={handlemedicalOfficerNameChange} />
+                                                        <input type="text" name="medicalOfficer-nic" id='medicalOfficer-nic' title='NIC Number' disabled={true} placeholder='Enter the NIC' className='inputfieds' required value={nic} onChange={handleNicChange} />
+                                                        <input type="text" name="medicalOfficer-service-start-date" title='Service Start Date' disabled={true} id='medicalOfficer-service-start-date' placeholder='Enter the Service Start Date' className='inputfieds' required value={serviceStartDate.split("T")[0]} onChange={handleserviceStartDatehange} />
+                                                        <input type="text" name="medicalOfficer-service-id" title='Service ID' disabled={true} id='medicalOfficer-service-id' placeholder='Enter the Service_Id' className='inputfieds' required value={serviceId} onChange={handleServiceIdChange} />
+                                                        <input type="email" name="medicalOfficer-email" title='Email' disabled={true} id='medicalOfficer-email' placeholder='Enter the Email' className='inputfieds' required value={email} onChange={handleEmailChange} />
+                                                        <input type="text" name="medicalOfficer-mobile" id='medicalOfficer-mobile' placeholder='Enter the Mobile Number' className='inputfieds' title='Mobile Number' required value={phone} onChange={handleMobileChange} />
                                                     </div>
                                                 </div>
                                                 <div className="submission-btn">

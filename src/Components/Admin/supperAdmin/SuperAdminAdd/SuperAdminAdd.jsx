@@ -10,7 +10,7 @@ export default function MidwifeAdd(props) {
     const [selectedArea, setSelectedArea] = useState("Select_an_Area");
 
     useEffect(() => {
-        instance.get("/public/areas")
+        instance.get("/admin/district")
             .then(res => {
                 if (res.data !== "No data found") {
                     setGetArea(res.data)
@@ -40,7 +40,7 @@ export default function MidwifeAdd(props) {
         const formData = {
             username: e.target['user-name'].value,
             email: e.target['email'].value,
-            area_id: selectedArea
+            district_id: selectedArea
         }
 
         try {
@@ -78,12 +78,12 @@ export default function MidwifeAdd(props) {
                             <select className='inputfieds' style={{ height: '35px', width: '91%' }} id='select_area_001001' onChange={handleAreaChange}>
                                 <option style={{ display: 'none' }} value="Select_an_Area">Select an Area</option>
                                 {getArea.map(area => (
-                                    <option key={area.area_id} value={area.area_id}>{area.area_name}</option>
+                                    <option key={area.district_id} value={area.district_id}>{area.district_name}</option>
                                 ))}
                             </select>
 
                             <input type="text" name="user-name" id='user-name' placeholder='Enter the User Name' className='inputfieds' required />
-                            <input type="text" name="email" id='email' placeholder='Enter the Email' className='inputfieds' required />
+                            <input type="email" name="email" id='email' placeholder='Enter the Email' className='inputfieds' required />
                         </div>
                     </div>
                     <div className="submission-btn">

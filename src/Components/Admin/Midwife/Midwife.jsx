@@ -206,7 +206,7 @@ export default function Mifwife() {
                                                         <div className='detail'><h4>Name :</h4>{selectedMidwife.name}</div>
                                                         <div className='detail'><h4>Service ID :</h4>{selectedMidwife.service_id}</div>
                                                         <div className='detail'><h4>NIC :</h4>{selectedMidwife.nic}</div>
-                                                        <div className='detail'><h4>Service Start Date :</h4>{selectedMidwife.service_start_date}</div>
+                                                        <div className='detail'><h4>Service Start Date :</h4>{selectedMidwife.service_start_date.split("T")[0]}</div>
                                                         <div className='detail'><h4>Gmail :</h4>{selectedMidwife.email}</div>
                                                         <div className='detail'><h4>Mobile :</h4>{selectedMidwife.phone}</div>
                                                         <div className='detail'><h4>Area :</h4>{selectedMidwife.area_name}</div>
@@ -250,18 +250,18 @@ export default function Mifwife() {
                                                 <div className="input-section">
                                                     <div className="input-wrapper">
                                                         {/* <input type="text" name="category-name" placeholder='Enter the Select Area'  required /> */}
-                                                        <select className='inputfieds' style={{ height: '35px', width: '91%' }} value={selectedArea} onChange={handleAreaChange}>
+                                                        <select className='inputfieds' style={{ height: '35px', width: '91%' }} value={getAllMidwifes[0].area_id} onChange={handleAreaChange} disabled={true} title='Midwife Service Area'>
                                                             {/* <option value="">Select an Area</option> */}
                                                             {getArea.map(area => (
                                                                 <option key={area.area_id} value={area.area_id}>{area.area_name}</option>
                                                             ))}
                                                         </select>
-                                                        <input type="text" name="midwife-name" id='midwife-name' placeholder='Enter the Midwife Name' className='inputfieds' required value={midwifeName} onChange={handleMidwifeNameChange} />
-                                                        <input type="text" name="midwife-nic" id='midwife-nic' placeholder='Enter the NIC' disabled={true} className='inputfieds' required value={nic} onChange={handleNicChange} />
-                                                        <input type="text" name="midwife-service-start-date" id='midwife-service-start-date' disabled={true} placeholder='Enter the Service Start Date' className='inputfieds' required value={serviceStartDate} onChange={handleserviceStartDatehange} />
-                                                        <input type="text" name="midwife-service-id" id='midwife-service-id' disabled={true} placeholder='Enter the Service_Id' className='inputfieds' required value={serviceId} onChange={handleServiceIdChange} />
-                                                        <input type="text" name="midwife-email" id='midwife-email' disabled={true} placeholder='Enter the Email' className='inputfieds' required value={email} onChange={handleEmailChange} />
-                                                        <input type="text" name="midwife-mobile" id='midwife-mobile' placeholder='Enter the Mobile Number' className='inputfieds' required value={phone} onChange={handleMobileChange} />
+                                                        <input type="text" name="midwife-name" id='midwife-name' placeholder='Enter the Midwife Name' className='inputfieds' title='Name of Midwife' required value={midwifeName} onChange={handleMidwifeNameChange} />
+                                                        <input type="text" name="midwife-nic" id='midwife-nic' placeholder='Enter the NIC' title='NIC Number' disabled={true} className='inputfieds' required value={nic} onChange={handleNicChange} />
+                                                        <input type="text" name="midwife-service-start-date" id='midwife-service-start-date' title='Service Start Date' disabled={true} placeholder='Enter the Service Start Date' className='inputfieds' required value={serviceStartDate.split("T")[0]} onChange={handleserviceStartDatehange} />
+                                                        <input type="text" name="midwife-service-id" id='midwife-service-id' disabled={true} title='Service ID' placeholder='Enter the Service_Id' className='inputfieds' required value={serviceId} onChange={handleServiceIdChange} />
+                                                        <input type="text" name="midwife-email" id='midwife-email' disabled={true} placeholder='Enter the Email' className='inputfieds' title='Email' required value={email} onChange={handleEmailChange} />
+                                                        <input type="text" name="midwife-mobile" id='midwife-mobile' placeholder='Enter the Mobile Number' className='inputfieds' title='Mobile Number' required value={phone} onChange={handleMobileChange} />
                                                     </div>
                                                 </div>
                                                 <div className="submission-btn">

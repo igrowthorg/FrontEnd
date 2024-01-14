@@ -10,7 +10,7 @@ export default function MidwifeAdd(props) {
     const [selectedArea, setSelectedArea] = useState("Select_an_Area");
 
     useEffect(() => {
-        instance.get("/public/areas")
+        instance.get("/admin/allowed-area")
             .then(res => {
                 if (res.data !== "No data found") {
                     setGetArea(res.data)
@@ -90,7 +90,7 @@ export default function MidwifeAdd(props) {
                             <input type="text" name="midwife-nic" id='midwife-nic' placeholder='Enter the NIC' className='inputfieds' required />
                             <input type="date" name="midwife-service-start-date" id='midwife-service-start-date' title='Select the Service Start Date' placeholder='Enter the Service Start Date' className='inputfieds' required />
                             <input type="text" name="midwife-service-id" id='midwife-service-id' placeholder='Enter the Service_Id' className='inputfieds' required />
-                            <input type="text" name="midwife-email" id='midwife-email' placeholder='Enter the Email' className='inputfieds' required />
+                            <input type="email" name="midwife-email" id='midwife-email' placeholder='Enter the Email' className='inputfieds' required />
                             <input type="text" name="midwife-mobile" id='midwife-mobile' placeholder='Enter the Mobile Number' className='inputfieds' required />
                         </div>
                     </div>
