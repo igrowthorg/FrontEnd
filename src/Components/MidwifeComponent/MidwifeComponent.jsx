@@ -37,14 +37,14 @@ export default function MinwifeComponent() {
       <Cover />
       <div className='navigation-container'>
         <ul>
-          <li onClick={() => setActive('measure')} style={active === 'measure' ? { background: '#fff', color: 'green', fontWeight: 'bold' } : {}}>Monthly Measure</li>
-          <li onClick={() => setActive('baby_detail')} style={active === 'baby_detail' ? { background: '#fff', color: 'green', fontWeight: 'bold' } : {}}>Baby Detail</li>
-          <li onClick={() => setActive('vacc_detail')} style={active === 'vacc_detail' ? { background: '#fff', color: 'green', fontWeight: 'bold' } : {}}>Vaccine Detail</li>
+          <li onClick={() => setActive('measure')} style={active === 'measure' ? { background: '#fff', color: 'purple', fontWeight: 'bold' } : {}}>Monthly Measure</li>
+          <li onClick={() => setActive('baby_detail')} style={active === 'baby_detail' ? { background: '#fff', color: 'purple', fontWeight: 'bold' } : {}}>Baby Detail</li>
+          <li onClick={() => setActive('vacc_detail')} style={active === 'vacc_detail' ? { background: '#fff', color: 'purple', fontWeight: 'bold' } : {}}>Vaccine Detail</li>
           {/* <li onClick={() => setActive('consult_advices')} style={active === 'consult_advices' ? { background: '#fff', color: 'green', fontWeight: 'bold' } : {}}>Consult Advices</li> */}
           {/* <li onClick={() => setActive('view_development')} style={active === 'view_development' ? { background: '#fff', color: 'green', fontWeight: 'bold' } : {}}>View Development</li> */}
-          <li onClick={() => setActive('create_account')} style={active === 'create_account' ? { background: '#fff', color: 'green', fontWeight: 'bold' } : {}}>Create Account</li>
-          <li onClick={() => setActive('add-news')} style={active === 'add-news' ? { background: '#fff', color: 'green', fontWeight: 'bold' } : {}}>Add News</li>
-          <li onClick={() => setActive('news-feeds')} style={active === 'news-feeds' ? { background: '#fff', color: 'green', fontWeight: 'bold' } : {}}>News Feeds</li>
+          <li onClick={() => setActive('create_account')} style={active === 'create_account' ? { background: '#fff', color: 'purple', fontWeight: 'bold' } : {}}>Create Account</li>
+          <li onClick={() => setActive('add-news')} style={active === 'add-news' ? { background: '#fff', color: 'purple', fontWeight: 'bold' } : {}}>Add News</li>
+          <li onClick={() => setActive('news-feeds')} style={active === 'news-feeds' ? { background: '#fff', color: 'purple', fontWeight: 'bold' } : {}}>News Feeds</li>
         </ul>
       </div>
       {/* <Midwife /> */}

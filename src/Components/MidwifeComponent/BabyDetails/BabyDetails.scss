@@ -3,6 +3,8 @@
     flex-direction: column;
     width: 100%;
     height: 78vh;
+    //background-image: url(../ggg.jpg);
+    background-size: cover;
     // background-color: purple;
 
     .babyDetail-top {
@@ -20,6 +22,7 @@
             .search {
                 height: 30px;
                 width: 250px;
+                
             }
         }
     }
@@ -60,7 +63,7 @@
             }
 
             thead {
-                background-color: rgb(178, 63, 255);
+                background-color: rgb(185, 120, 228);
                 // background-color: #04AA6D;
                 color: white;
             }
@@ -85,13 +88,13 @@
                             align-items: center;
                             justify-content: center;
                             // background-color: green;
-                            border: solid green 1px;
+                            border: solid rgb(45, 5, 49) 1px;
                             border-radius: 4px;
                             margin-bottom: 4px;
                             transition: 0.1s ease-in-out;
 
                             &:hover {
-                                background-color: rgb(137, 255, 137);
+                                background-color: rgb(220, 192, 233);
                                 cursor: pointer;
                             }
                         }

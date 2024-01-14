@@ -1,4 +1,6 @@
 .addNew-container {
+    background-image: url(../ggg.jpg);
+    background-size: cover;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -12,7 +14,7 @@
         width: 900px;
         height: 95%;
         margin: 0 auto;
-        background-color: rgb(255, 251, 242);
+        background-color: rgb(133, 27, 162);
     
         h3{
             text-align: center;
@@ -46,13 +48,13 @@
                 padding-top: 5px;
 
                 .submit-btn {
-                    border: solid 1px blue;
+                    border: solid 1px rgb(202, 96, 248);
                     border-radius: 8px;
 
                     &:hover {
                         cursor: pointer;
-                        background-color: rgb(102, 102, 247);
-                        color: white;
+                        background-color: rgb(208, 114, 237);
+                        color: rgb(189, 143, 238);
                         border: none;
                     }
                 }
