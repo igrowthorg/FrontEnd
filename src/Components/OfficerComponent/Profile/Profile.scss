@@ -1,0 +1,369 @@
+// .body{
+//     width: 100%;
+//     margin-bottom: 50px;
+
+//     .main_title{
+//         font-family: 'Times New Roman', Times, serif;
+//         font-size: 5vh;
+//         background: rgb(196, 92, 228,0.5);
+//         width: 95.5%;
+//         height: 8vh;
+//         margin-top: 0;
+//         padding-top: 2vh;
+//         padding-left: 10vh;
+
+//     }
+//     .static_textbox{
+//         margin-left: 30vh;
+//         // margin-top: -3vh;
+//         background: gray;
+//         width: 600px;
+//         height: 3ch;
+//         padding-left: 1vh;
+
+//         .sectord1{
+//             .input{
+//                 // margin-top: -6.5vh;
+//                 margin-left: 12vh;
+//                 input{
+//                     width: 12vh;
+//                 }
+//             }
+
+//         }
+//         .sectord2{
+//             margin-left: 30vh;
+//             margin-top: -6.5vh;
+//             .input{
+//                 margin-top: -6.5vh;
+//                 margin-left: 12vh;
+//                 input{
+//                     width: 12vh;
+//                 }
+//             }
+
+//         }
+//         .sectord3{
+//             margin-left: 60vh;
+//             margin-top: -6.5vh;
+//             .input{
+//                 margin-top: -6.5vh;
+//                 margin-left: 8vh;
+//                 input{
+//                     width: 12vh;
+//                 }
+//             }
+
+//         }
+
+//     }
+//     .update_unit{
+//         margin-left: 35vh;
+//         margin-top: 8vh;
+//         font-size: 3vh;
+
+//         .input{
+//             margin-left: 30vh;
+//             margin-top: -8vh;
+
+//             input{
+//                 height: 4vh;
+//                 width: 40vh;
+//                 border-radius: 8px;
+//             }
+//         }
+//         #update_button{
+//             input{
+//                 height: 5vh;
+//                 width: 20vh;
+//                 border-radius: 8px;
+//                 margin-left: 25vh;
+//                 margin-top: 8vh;
+//             }
+//         }
+//     }
+
+
+
+
+
+
+
+
+//     .right_box{
+//         width: 65vh;
+//         height: 80vh;
+//         background:rgb(128, 128, 128,0.5);
+//         margin-left: 65%;
+//         margin-top: -75vh;
+
+//         .summery_title{
+//             margin-left: 5vh;
+//             padding-top: 0.5vh;
+//             font-family: 'Courier New', Courier, monospace;
+//         }
+
+//         .tot{
+//             margin-left: 5vh;
+//             font-family: 'Courier New', Courier, monospace;
+//             .count{
+//                 font-size: larger;
+//                 font-weight: bold;
+//                 margin-left: 35vh;
+//                 margin-top: -5.5vh;
+//             }
+//             .tot_title{
+//                 margin-left: 5vh;
+//             }
+//         }
+//         .button{
+            
+//             margin-left: 25vh;
+//             margin-top: 5vh;
+
+
+//             #button{
+//                 height: 4vh;
+//                 width: 15vh;
+//                 margin-top: 5vh;
+//                 border-radius: 8px;
+//             }
+//         }
+//     }
+// }
+
+.profile-container {
+    width: 100%;
+    // height: 78vh;
+    // background-color: red;
+
+    .profile-top {
+        width: 100%;
+        // height: 10%;
+        height: 50px;
+        background-color: rgb(222, 164, 255);
+        font-family: Arial, Helvetica, sans-serif;
+        display: flex;
+        align-items: center;
+        // justify-content: center;
+
+        span {
+            font-size: 20px;
+            font-weight: 600;
+            padding-left: 25px;
+        }
+    }
+
+    .profile-bottom {
+        display: flex;
+        width: 100%;
+        // height: 90%;
+        // background-color: blue;
+
+        .buttom-left {
+            width: 50%;
+            height: 100%;
+            // background-color: yellow;
+
+            .left-header {
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+                width: 100%;
+                // height: 15%;
+                height: 60px;
+                background-color: rgb(109, 181, 245);
+
+                .inputField-cover {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    label {
+                        font-weight: bold;
+                    }
+
+                    input {
+                        padding-left: 10px;
+                        margin-left: 10px;
+                        width: 80px;
+                        height: 30px;
+                        // margin-left: 10px;
+                        border-radius: 5px;
+                        border: 1px solid black;
+                        background-color: white;
+                    }
+
+                    .area {
+                        width: 180px;
+                    }
+                }
+            }
+
+            .left-body {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+                // height: 85%;
+                // background-color: rgb(125, 255, 86);
+
+                form {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    // justify-content: center;
+                    width: 80%;
+                    height: 85%;
+                    // background-color: yellow;
+                    margin-top: 20px;
+
+                    .inputField-cover {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-around;
+                        width: 100%;
+                        height: 20%;
+                        margin-top: 10px;
+                        // background-color: red;
+
+                        label {
+                            width: 300px;
+                            font-size: 16px;
+                            font-weight: bold;
+                        }
+    
+                        input {
+                            width: 550px;
+                            height: 25px;
+                            border: 1px solid black;
+                            border-radius: 5px;
+                            // margin-top: 10px;
+                            padding-left: 10px;
+                        }
+                    }
+
+                    .profile-update-btn {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 100%;
+                        height: 25%;
+                        // background-color: blue;
+
+                        input {
+                            border-radius: 10px;
+                            border: 1px solid black;
+                            width: 200px;
+                            height: 40px;
+                            margin-top: 30px;
+
+                            &:hover {
+                                cursor: pointer;
+                                background-color: rgb(191, 118, 252);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .butom-right {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 50%;
+            // height: 100%;
+            // background-color: greenyellow;
+
+            .summery-card {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+                // height: 70vh;
+                // background-color: rgb(179, 179, 179); 
+
+                .css-1u0lry5-MuiChartsLegend-root{
+                    display: none;
+                }
+
+                .css-1daenge-MuiChartsSurface-root{
+                    width: 300px;
+                    font-size: 13px;
+                }
+
+
+                .summery-header {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 99%;
+                    height: 60px;
+                    // background-color: blue;
+                    background-color: rgb(109, 181, 245);
+
+                    span {
+                        font-family: Arial, Helvetica, sans-serif;
+                        font-size: 25px;
+                    }
+                }
+
+                .summery-body {
+                    font-family: 'Courier New', Courier, monospace;;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    // justify-content: center;
+                    width: 90%;
+                    // height: 100%;
+                    padding-bottom: 10px;
+                    // background-color: white;
+                    border: 1px solid black;
+
+                    .summery-body-cover {
+                        display: flex;
+                        align-items: center;
+                        // justify-content: space-between;
+                        justify-content: center;
+                        width: 100%;
+                        height: 35px;
+                        // background-color: red;
+                        margin-top: 10px;
+
+                        .span-title {
+                            width: 40%;
+                            // background-color: red;
+                        }
+
+                        .span-body {
+                            // width: 10%;
+                        }
+                    }
+                }
+            }
+
+            .download-button {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+                height: 60px;
+                // background-color: red;
+
+                input {
+                    border: 1px solid black;
+                    border-radius: 6px;
+                    width: 200px;
+                    height: 40px;
+
+                    &:hover {
+                        cursor: pointer;
+                        background-color: rgb(191, 118, 252);
+                    }
+                }
+            }
+        }
+    }
+}
