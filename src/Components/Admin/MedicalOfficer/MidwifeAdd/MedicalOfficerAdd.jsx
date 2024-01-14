@@ -10,7 +10,7 @@ export default function MedicalOfficerAdd(props) {
     const [isWaiting, setWaiting] = useState(false);
 
     useEffect(() => {
-        instance.get("/public/areas")
+        instance.get("/admin/allowed-area")
             .then(res => {
                 if (res.data !== "No data found") {
                     setGetArea(res.data)
@@ -87,7 +87,7 @@ export default function MedicalOfficerAdd(props) {
                             <input type="text" name="medicalOfficer-nic" id='medicalOfficer-nic' placeholder='Enter the NIC' className='inputfieds' required />
                             <input type="date" name="medicalOfficer-service-start-date" id='medicalOfficer-service-start-date' title='Select the Service Start Date' placeholder='Select the Service Start Date' className='inputfieds' required />
                             <input type="text" name="medicalOfficer-service-id" id='medicalOfficer-service-id' placeholder='Enter the Service_Id' className='inputfieds' required />
-                            <input type="text" name="medicalOfficer-email" id='medicalOfficer-email' placeholder='Enter the Email' className='inputfieds' required />
+                            <input type="email" name="medicalOfficer-email" id='medicalOfficer-email' placeholder='Enter the Email' className='inputfieds' required />
                             <input type="text" name="medicalOfficer-mobile" id='medicalOfficer-mobile' placeholder='Enter the Mobile Number' className='inputfieds' required />
                         </div>
                     </div>
