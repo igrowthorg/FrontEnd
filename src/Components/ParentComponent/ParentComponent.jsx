@@ -4,10 +4,10 @@ import Cover from '../cover/cover'
 import Profile from './Profile/profile'
 import BabyDetails from './BabyDetails/babyDetails'
 
-export default function MinwifeComponent() {
+export default function ParentComponent() {
   const [active, setActive] = useState('')
   return (
-    <div className='midwifeComponent-container'>
+    <div className='parentComponent-container'>
       <Cover />
       <div className='navigation-container'>
         <ul>

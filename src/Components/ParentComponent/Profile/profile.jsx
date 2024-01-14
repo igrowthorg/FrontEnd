@@ -73,9 +73,9 @@ export default function Profile() {
 
 
         const formData = {
-            mother_name: motherName,
-            father_name: fatherName,
-            guardian_name: guardianName,
+            motherName: motherName,
+            fatherName: fatherName,
+            guardianName: guardianName,
             phone: phone,
             address: address,
             old_password: oldPass,
@@ -123,9 +123,9 @@ export default function Profile() {
             .then(res => {
                 if (res.data !== "No data found") {
                     setProfile(res.data)
-                    setMotherName(res.data.mother_name)
-                    setFatherName(res.data.father_name)
-                    setGuardianName(res.data.guardian_name)
+                    setMotherName(res.data.motherName)
+                    setFatherName(res.data.fatherName)
+                    setGuardianName(res.data.guardianName)
                     setPhone(res.data.phone)
                     setAddress(res.data.address)
                     console.log(res.data)
