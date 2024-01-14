@@ -43,11 +43,14 @@ const NewsCard = (props) => {
             </div>
 
             <div className="content">
-                <h3 style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <div className='sub_content'>
+                <h2 style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                     {props.title} <CiTrash color="red" size={22} className="bin-icon" onClick={deleteNews} />
-                </h3>
+                </h2>
+                
                 <p className="discretion">{props.summary}</p>
                 <p className="date">{props.date}</p>
+            </div>
             </div>
         </div>
     );
