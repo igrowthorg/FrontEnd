@@ -12,7 +12,7 @@ export default function Cover() {
         try {
             const res = await instance.post('/admin/logout')
             console.log(res.data)
-            navigation('/auth')
+            navigation('/')
         }
         catch (err) {
             console.log(err)
@@ -21,7 +21,7 @@ export default function Cover() {
         try {
             const res = await instance.post('/midwife/logout')
             console.log(res.data)
-            navigation('/auth')
+            navigation('/')
         }
         catch (err) {
             console.log(err)
@@ -30,12 +30,20 @@ export default function Cover() {
         try {
             const res = await instance.post('/officer/logout')
             console.log(res.data)
-            navigation('/auth')
+            navigation('/')
         }
         catch (err) {
             console.log(err)
         }
 
+        try {
+            const res = await instance.post('/parent/logout')
+            console.log(res.data)
+            navigation('/')
+        }
+        catch (err) {
+            console.log(err)
+        }
     }
 
     return (

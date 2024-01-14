@@ -5,33 +5,124 @@ import instance from '../../../utility/AxiosInstance'
 
 export default function MonthlyMeasurement() {
 
-    const data = [
-        { id: '1', Month: "01", minus1SD: "10", plus1SD: "02", minus2SD: '04', plus2SD: '01' },
-        { id: '2', Month: "02", minus1SD: "12", plus1SD: "01", minus2SD: '04', plus2SD: '03' },
-        { id: '3', Month: "02", minus1SD: "12", plus1SD: "01", minus2SD: '04', plus2SD: '03' },
-        { id: '4', Month: "02", minus1SD: "12", plus1SD: "01", minus2SD: '04', plus2SD: '03' },
-    ]
+    const [inputData, setInputData] = useState({
+        child_id: null,
+        child_name: null,
+        month: null,
+        weight: null,
+        height: null,
+        head_cricumference: null,
+    })
 
+    const [lastMonthHeight, setLastMonthHeight] = useState(null);
+    const[searchData, setSearchData] = useState("");
     const [allData, setAllData] = useState(null);
+    const [bogTableTrigger, setBogTableTrigger] = useState(false);
+
+
+    const submit = async (e) => {
+        e.preventDefault();
+    
+        const data = {
+            weight: inputData.weight, 
+            height: inputData.height, 
+            month: inputData.month, 
+            head_cricumference: inputData.head_cricumference
+        }
+
+        if(!data.weight === "" || !data.height === "" || !data.head_cricumference === "" || !data.month === "" || !inputData.child_id ){
+            alert("Please fill all the fields")
+            return
+        }
+
+        if(parseFloat(data.height) <= parseFloat(lastMonthHeight)) {
+            alert(`Height can't be less than last month height(${lastMonthHeight} cm)`)
+            document.getElementById('c_height').focus();
+            return
+        }
+
+        try{
+            const res = await instance.post(`/midwife/child/growth_detail/${inputData.child_id}`, data)
+
+            if(res.data.message === "Child growth detail added"){
+                setInputData({
+                    child_id: "",
+                    child_name: "",
+                    month: "",
+                    weight: "",
+                    height: "",
+                    head_cricumference: "",
+                })
+                setBogTableTrigger(!bogTableTrigger)
+                alert("Child growth detail added")
+            }
+
+        }
+        catch(err){
+            console.log(err)
+        }
+    }
+
+    const pressSearch = async() => {
+        try{
+            const res = await instance.get(`/midwife/child/last-growth_detail/${searchData}`)
+
+            if(res.data.message === "Not privileges"){
+                setLastMonthHeight(null)
+                alert("Not privileges")
+                return
+            }
+            
+            if(res.data.message === "Child growth detail not found"){
+                setLastMonthHeight(null)
+                setInputData({
+                    child_id: res.data.child.child_id,
+                    child_name: res.data.child.child_name,
+                    month: 1,
+                    weight: "",
+                    height: "",
+                    head_cricumference: "",
+                })
+            }
+            else{
+                setLastMonthHeight(res.data.height)
+                setInputData({
+                    child_id: res.data.child_id,
+                    child_name: res.data.child_name,
+                    month: parseInt(res.data.month) + 1,
+                    weight: "",
+                    height: "",
+                    head_cricumference: "",
+                })
+            }
+            
+        }
+        catch(err){
+            console.log(err)
+            alert("Children ID not found")
+        }
+    }
+
+    
 
     useEffect(() => {
         instance.get("/midwife/child/sd_measurements")
             .then(res => {
                 if (res.data !== "No data found") {
                     setAllData(res.data)
-                    console.log(res.data)
                 }
                 else console.log("No data found");
             }).catch(err => console.log(err))
-    }, [])
+
+    }, [bogTableTrigger])
 
 
     if (allData !== null) return (
         <div className='measurement-container'>
             <div className='measurement-top'>
                 <div className='searchbar'>
-                    <input type="text" placeholder="Search.." name="search" className='search' />
-                    <button type="submit"><CiSearch size={"25px"} color='purple' /></button>
+                    <input type="number" placeholder="Search.." name="search" className='search' onChange={e => setSearchData(e.target.value)} />
+                    <button type="submit"><CiSearch size={"25px"} color='purple' onClick={pressSearch} /></button>
                 </div>
             </div>
             <div className='measurement-bottom'>
@@ -72,68 +163,32 @@ export default function MonthlyMeasurement() {
                     <div className='form-container'>
                         <h2>Child Measurement Form</h2>
 
-                        <form >
+                        <form onSubmit={submit}>
                             <div className='form-group'>
                                 <label>Child ID:</label>
-                                <input
-                                    type='text'
-                                    name='childId'
-                                    // value={childId}
-                                    // onChange={handleChange}
-                                    required
-                                />
+                                <input type='text' disabled={true} value={inputData.child_id} name='childId' id='childId' required />
                             </div>
                             <div className='form-group'>
                                 <label>Child Name:</label>
-                                <input
-                                    type='text'
-                                    name='childName'
-                                    // value={childName}
-                                    // onChange={handleChange}
-                                    required
-                                />
+                                <input type='text' disabled={true} name='childName' value={inputData.child_name} id='childName' required />
                             </div>
                             <div className='form-group'>
                                 <label>Month:</label>
-                                <input
-                                    type='text'
-                                    name='month'
-                                    // value={month}
-                                    // onChange={handleChange}
-                                    required
-                                />
+                                <input type='text' disabled={true} name='month' value={inputData.month} id='month' required />
                             </div>
                             <div className='form-group'>
                                 <label>Weight:</label>
-                                <input
-                                    type='text'
-                                    name='weight'
-                                    // value={weight}
-                                    // onChange={handleChange}
-                                    required
-                                />
+                                <input type='number' min={1} value={inputData.weight} disabled={inputData.child_id === "" || inputData.child_id === null} onChange={(e) => setInputData({...inputData, weight: e.target.value})} name='weight' id='weight' required />
                             </div>
                             <div className='form-group'>
                                 <label>Height:</label>
-                                <input
-                                    type='text'
-                                    name='height'
-                                    // value={height}
-                                    // onChange={handleChange}
-                                    required
-                                />
+                                <input type='number' min={1} name='height' value={inputData.height} disabled={inputData.child_id === "" || inputData.child_id === null} onChange={(e) => setInputData({...inputData, height: e.target.value})} id='c_height' required />
                             </div>
                             <div className='form-group'>
                                 <label>Head Circumference:</label>
-                                <input
-                                    type='text'
-                                    name='headCircumference'
-                                    // value={headCircumference}
-                                    // onChange={handleChange}
-                                    required
-                                />
+                                <input type='number' min={1} value={inputData.head_cricumference} disabled={inputData.child_id === "" || inputData.child_id === null} onChange={(e) => setInputData({...inputData, head_cricumference: e.target.value})} name='headCircumference' id='headCircumference' required />
                             </div>
-                            <input className="button" type="submit" />
+                            <input className="button" title={inputData.child_id === "" || inputData.child_id === null ? 'Please insert child id' : 'Add Data'} type="submit" style={inputData.child_id === "" || inputData.child_id === null ? {background: 'gray', cursor: 'not-allowed'}: null} disabled={inputData.child_id === "" || inputData.child_id === null} />
                         </form>
                     </div>
                 </div>
