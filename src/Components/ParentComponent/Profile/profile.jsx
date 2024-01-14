@@ -120,9 +120,9 @@ export default function Profile() {
       .then((res) => {
         if (res.data !== "No data found") {
           setProfile(res.data);
-          setMotherName(res.data.motherName);
-          setFatherName(res.data.fatherName);
-          setGuardianName(res.data.guardianName);
+          setMotherName(res.data.mother_name);
+          setFatherName(res.data.father_name);
+          setGuardianName(res.data.guardian_name);
           setPhone(res.data.phone);
           setAddress(res.data.address);
           console.log(res.data);
@@ -178,7 +178,7 @@ export default function Profile() {
                     value={motherName}
                     type="text"
                     id="mother-name"
-                    name="mother--name"
+                    name="mother-name"
                     required={true}
                   />
                 </div>
@@ -190,7 +190,7 @@ export default function Profile() {
                     value={fatherName}
                     type="text"
                     id="father-name"
-                    name="father--name"
+                    name="father-name"
                     required={true}
                   />
                 </div>
