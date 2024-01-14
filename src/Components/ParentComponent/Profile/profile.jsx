@@ -73,9 +73,9 @@ export default function Profile() {
 
 
         const formData = {
-            motherName: motherName,
-            fatherName: fatherName,
-            guardianName: guardianName,
+            mother_name: motherName,
+            father_name: fatherName,
+            guardian_name: guardianName,
             phone: phone,
             address: address,
             old_password: oldPass,
@@ -112,14 +112,14 @@ export default function Profile() {
             catch (err) {
                 setAuthenticated(false)
                 console.log({ error: err })
-                navigation('/auth')
+                navigation('/')
             }
         }
         checkAuth()
     }, [trigger])
 
     useEffect(() => {
-        instance.get("/officer/profile")
+        instance.get("/parent/profile")
             .then(res => {
                 if (res.data !== "No data found") {
                     setProfile(res.data)
@@ -161,7 +161,7 @@ export default function Profile() {
 
                             <div className='inputField-cover'><label>New Password :</label><input value={newPass} onChange={handleNewPassword} type='password' placeholder='New Password' id='new-password' name='new-password' /></div>
 
-                            <div className='inputField-cover'><label>Conform Password :</label><input value={confirmPass} onChange={handleConfirmPassword} type='password' placeholder='Confirm Password' id='confirm-password' name='confirm-password' /></div>
+                            <div className='inputField-cover'><label>Confirm Password :</label><input value={confirmPass} onChange={handleConfirmPassword} type='password' placeholder='Confirm Password' id='confirm-password' name='confirm-password' /></div>
 
                             <div className='profile-update-btn'>
                                 <input type="submit" value={"Update"} />
