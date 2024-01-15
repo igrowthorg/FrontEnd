@@ -15,36 +15,38 @@ export default function MonthlyMeasurement() {
     })
 
     const [lastMonthHeight, setLastMonthHeight] = useState(null);
-    const[searchData, setSearchData] = useState("");
+    const [searchData, setSearchData] = useState("");
     const [allData, setAllData] = useState(null);
     const [bogTableTrigger, setBogTableTrigger] = useState(false);
+    const [btnName] = useState("Add Data")
+    const [currentMonthUpdateDisable, setCurrentMonthUpdateDisable] = useState(false)
 
 
     const submit = async (e) => {
         e.preventDefault();
-    
+
         const data = {
-            weight: inputData.weight, 
-            height: inputData.height, 
-            month: inputData.month, 
+            weight: inputData.weight,
+            height: inputData.height,
+            month: inputData.month,
             head_cricumference: inputData.head_cricumference
         }
 
-        if(!data.weight === "" || !data.height === "" || !data.head_cricumference === "" || !data.month === "" || !inputData.child_id ){
+        if (!data.weight === "" || !data.height === "" || !data.head_cricumference === "" || !data.month === "" || !inputData.child_id) {
             alert("Please fill all the fields")
             return
         }
 
-        if(parseFloat(data.height) <= parseFloat(lastMonthHeight)) {
+        if (parseFloat(data.height) <= parseFloat(lastMonthHeight)) {
             alert(`Height can't be less than last month height(${lastMonthHeight} cm)`)
             document.getElementById('c_height').focus();
             return
         }
 
-        try{
+        try {
             const res = await instance.post(`/midwife/child/growth_detail/${inputData.child_id}`, data)
 
-            if(res.data.message === "Child growth detail added"){
+            if (res.data.message === "Child growth detail added") {
                 setInputData({
                     child_id: "",
                     child_name: "",
@@ -58,52 +60,99 @@ export default function MonthlyMeasurement() {
             }
 
         }
-        catch(err){
+        catch (err) {
             console.log(err)
         }
     }
+    
 
-    const pressSearch = async() => {
-        try{
+    const pressSearch = async () => {
+        setCurrentMonthUpdateDisable(false)
+        var month = null;
+        try {
             const res = await instance.get(`/midwife/child/last-growth_detail/${searchData}`)
-
-            if(res.data.message === "Not privileges"){
+            console.log("GET DATA", res.data);
+            if (res.data.message === "Not privileges") {
                 setLastMonthHeight(null)
                 alert("Not privileges")
                 return
             }
-            
-            if(res.data.message === "Child growth detail not found"){
+
+
+
+            if (res.data.message === "Child growth detail not found") {
+                console.log(res.data.child);
                 setLastMonthHeight(null)
                 setInputData({
                     child_id: res.data.child.child_id,
                     child_name: res.data.child.child_name,
-                    month: 1,
+                    month: parseInt(res.data.child.months_difference),
                     weight: "",
                     height: "",
                     head_cricumference: "",
                 })
+                month = res.data.child.months_difference
             }
-            else{
+            else {
                 setLastMonthHeight(res.data.height)
                 setInputData({
                     child_id: res.data.child_id,
                     child_name: res.data.child_name,
-                    month: parseInt(res.data.month) + 1,
+                    month: parseInt(res.data.months_difference),
                     weight: "",
                     height: "",
                     head_cricumference: "",
                 })
+                month = res.data.months_difference
             }
+
             
+
+            // Check Exist Of Child Growth Detail for This Month
+            try{
+                const res = await instance.get(`/midwife/child/last-growth-data/${searchData}`)
+                console.log(res.data);
+                if(res.data.bmi){
+                    if(res.data.month === parseInt(month)){
+                        setInputData(data => {
+                            return {
+                                ...data,
+                                weight: res.data.weight,
+                                height: res.data.height,
+                                head_cricumference: res.data.head_cricumference
+                            }
+                        })
+                        setCurrentMonthUpdateDisable(true)
+                    }
+                    else{
+                        setCurrentMonthUpdateDisable(false)
+                    }
+                }
+                else{
+
+                }
+                
+            }
+            catch(err){
+                console.log(err)
+            }
+
+            if(month === 0){
+                alert("This is the first month of the child. Please add the data after age of 1 month")
+                setCurrentMonthUpdateDisable(true)
+            }
+            else{
+                setCurrentMonthUpdateDisable(false)
+            }
+
         }
-        catch(err){
+        catch (err) {
             console.log(err)
             alert("Children ID not found")
         }
     }
 
-    
+
 
     useEffect(() => {
         instance.get("/midwife/child/sd_measurements")
@@ -121,7 +170,7 @@ export default function MonthlyMeasurement() {
         <div className='measurement-container'>
             <div className='measurement-top'>
                 <div className='searchbar'>
-                    <input type="number" placeholder="Search.." name="search" className='search' onChange={e => setSearchData(e.target.value)} />
+                    <input type="number" placeholder="Search child ID..." name="search" className='search' onChange={e => setSearchData(e.target.value)} />
                     <button type="submit"><CiSearch size={"25px"} color='purple' onClick={pressSearch} /></button>
                 </div>
             </div>
@@ -178,17 +227,24 @@ export default function MonthlyMeasurement() {
                             </div>
                             <div className='form-group'>
                                 <label>Weight:</label>
-                                <input type='number' min={1} value={inputData.weight} disabled={inputData.child_id === "" || inputData.child_id === null} onChange={(e) => setInputData({...inputData, weight: e.target.value})} name='weight' id='weight' required />
+                                <input type='number' min={1} step="0.1" value={inputData.weight} disabled={inputData.child_id === "" || inputData.child_id === null || currentMonthUpdateDisable} onChange={(e) => setInputData({ ...inputData, weight: e.target.value })} name='weight' id='weight' required />
                             </div>
                             <div className='form-group'>
-                                <label>Height:</label>
-                                <input type='number' min={1} name='height' value={inputData.height} disabled={inputData.child_id === "" || inputData.child_id === null} onChange={(e) => setInputData({...inputData, height: e.target.value})} id='c_height' required />
+                                <label>Height(Meters):</label>
+                                <input type='number' min={1} step="0.1" name='height' value={inputData.height} disabled={inputData.child_id === "" || inputData.child_id === null || currentMonthUpdateDisable} onChange={(e) => setInputData({ ...inputData, height: e.target.value })} id='c_height' required />
                             </div>
                             <div className='form-group'>
                                 <label>Head Circumference:</label>
-                                <input type='number' min={1} value={inputData.head_cricumference} disabled={inputData.child_id === "" || inputData.child_id === null} onChange={(e) => setInputData({...inputData, head_cricumference: e.target.value})} name='headCircumference' id='headCircumference' required />
+                                <input type='number' min={1} step="0.1" value={inputData.head_cricumference} disabled={inputData.child_id === "" || inputData.child_id === null || currentMonthUpdateDisable} onChange={(e) => setInputData({ ...inputData, head_cricumference: e.target.value })} name='headCircumference' id='headCircumference' required />
                             </div>
-                            <input className="button" title={inputData.child_id === "" || inputData.child_id === null ? 'Please insert child id' : 'Add Data'} type="submit" style={inputData.child_id === "" || inputData.child_id === null ? {background: 'gray', cursor: 'not-allowed'}: null} disabled={inputData.child_id === "" || inputData.child_id === null} />
+                            {
+                                currentMonthUpdateDisable ?
+                                    <div className='form-group'>
+                                        <label  className="button" style={{background: 'gray', textAlign:'center', cursor: 'not-allowed', width: '94%'}}>Current Month Data Already Exist</label>
+                                    </div>
+                                    : <input className="button" title={inputData.child_id === "" || inputData.child_id === null ? 'Please insert child id' : 'Add Data'} type="submit" style={inputData.child_id === "" || inputData.child_id === null ? { background: 'gray', cursor: 'not-allowed' } : null} disabled={inputData.child_id === "" || inputData.child_id === null || currentMonthUpdateDisable} value={btnName} />
+                            }
+                            
                         </form>
                     </div>
                 </div>
