@@ -43,17 +43,17 @@ const AddNews = () => {
                 <form onSubmit={submit} id='news-send'>
                     <div className="row">
                         <label htmlFor="news-title">Title</label>
-                        <input type="text" name='news-title' id='news-title' placeholder='Enter News Title' />
+                        <input type="text" name='news-title' id='news-title' placeholder='Enter News Title' required />
                     </div>
 
                     <div className="row">
                         <label htmlFor="news-content">News Content</label>
-                        <textarea name="news-content" id="news-content" cols="30" rows="10" placeholder='Enter News Content'></textarea>
+                        <textarea name="news-content" id="news-content" cols="30" rows="10" placeholder='Enter News Content' required></textarea>
                     </div>
 
                     <div className="row">
                         <label htmlFor="news-image-file">Choose Image</label>
-                        <input type="file" name='news-image-file' id='news-image-file' />
+                        <input type="file" name='news-image-file' id='news-image-file' required />
                     </div>
 
                     <div className="row submit-button">

@@ -38,6 +38,25 @@ export default function ParentDataAdd(props) {
         console.log(selectedArea);
     };
 
+    const checkNICValidity = (nic) => {
+        if(nic.length === 10 || nic.length === 12){
+            if(nic.length === 10){
+                if(nic[9] === 'V' || nic[9] === 'v'){
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            }
+            if(nic.length === 12){
+                return true;
+            }
+        }
+        else{
+            return false;
+        }
+    }
+
     const submit = async (e) => {
         e.preventDefault();
 
@@ -60,20 +79,28 @@ export default function ParentDataAdd(props) {
             area_id: selectedArea
         }
 
-        try {
-            const res = await instance.post('/midwife/parent', formData);
-            props.setTrigger((prevTrigger) => !prevTrigger);
-
-            if (res.status === 200) {
-                props.setDisplayParentAdd(false);
-                // alert('Item Added Successfully');
+        if(checkNICValidity(formData.guardian_nic)){
+            try {
+                const res = await instance.post('/midwife/parent', formData);
+                props.setTrigger((prevTrigger) => !prevTrigger);
+    
+                if (res.status === 200) {
+                    props.setDisplayParentAdd(false);
+                    alert('Parent Data Successfully');
+                }
+            } catch (err) {
+                console.log(err.response.data.message);
+                alert(err.response.data.message);
+            } finally {
+                setIsWaiting(false);
             }
-        } catch (err) {
-            console.log(err.response.data.message);
-            alert(err.response.data.message);
-        } finally {
+        }else{
+            alert("Please enter a valid NIC");
             setIsWaiting(false);
+            document.getElementById('guardian-nic').focus();
         }
+
+        
     }
 
     return (

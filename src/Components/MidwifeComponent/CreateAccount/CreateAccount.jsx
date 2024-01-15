@@ -8,7 +8,7 @@ export default function CreateAccount() {
 
     const [inputData, setInputData] = useState({
         child_name: "",
-        child_gender: "",
+        child_gender: "male",
         child_birthday: "",
         child_birth_certificate_no: "",
         child_born_weight: "",
@@ -89,6 +89,7 @@ export default function CreateAccount() {
         e.preventDefault();
 
         try {
+            console.log(inputData);
             const res = await instance.post('/midwife/child', inputData);
 
             if (res.status === 200) {
@@ -299,7 +300,7 @@ export default function CreateAccount() {
                             />
                         </div>
 
-                        <div className="form-group">
+                        {/* <div className="form-group">
                             <label htmlFor="gender">Gender:</label>
                             <input
                                 required={true}
@@ -308,9 +309,19 @@ export default function CreateAccount() {
                                 name="gender"
                                 onChange={e => setInputData({ ...inputData, child_gender: e.target.value })}
                             />
-                        </div>
+                        </div> */}
+
                         <div className="form-group">
-                            <label htmlFor="gender">Registration Number:</label>
+                            <label htmlFor="gender">Gender:</label>
+                            <select name="gender" id="gender" onChange={e => setInputData({ ...inputData, child_gender: e.target.value || 'male' })}>
+                                <option value="male" selected={true}>Male</option>
+                                <option value="female">Female</option>
+                            </select>
+                        </div>
+
+
+                        <div className="form-group">
+                            <label htmlFor="gender">Birth Certificate Number:</label>
                             <input
                                 required={true}
                                 type="text"
@@ -319,7 +330,7 @@ export default function CreateAccount() {
                                 onChange={e => setInputData({ ...inputData, child_birth_certificate_no: e.target.value })}
                             />
                         </div>
-                        <div className="form-group">
+                        {/* <div className="form-group">
                             <label htmlFor="parentName">Guardian's Name:</label>
                             <input
                                 required={true}
@@ -328,7 +339,7 @@ export default function CreateAccount() {
                                 name="parentName"
                                 onChange={e => setInputData({ ...inputData, parent_name: e.target.value })}
                             />
-                        </div>
+                        </div> */}
                         <button type="submit">Submit</button>
                     </form>
                 </div>
