@@ -1,0 +1,109 @@
+.newsFeed-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 78vh;
+    background-image: url(../../newsBack.jpeg);
+    background-size: cover;
+    // background-color: #ff9f9f;
+
+    .card-fram {
+        // margin-top: 20px;
+        // display: grid;
+        // grid-template-columns: auto auto;
+        // grid-auto-flow: row;
+
+        display: flex; 
+        flex-direction: column; 
+        align-items: center; 
+        
+
+        // align-items: center;
+        // justify-content: center;
+        // grid-gap: 10px;
+        width: 98%;
+        height: 95%;
+        // background-color: white;
+        overflow-y: auto;
+
+        .news{
+            margin: 20px;
+            height: 300px;
+            width: 1000px;
+            box-sizing: border-box;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            margin-bottom: 10px;
+            background-color: rgb(224, 175, 245);
+            box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+
+            &:hover{
+                transform: translateY(-1%);
+                box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.5);
+            }
+            
+            .image{
+                width: 40%;
+                height: 100%;
+                overflow: hidden;
+                
+                img{
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
+
+            .content{
+                width: 100%;
+                padding: 15px;
+
+                .sub_content{
+                    width: 85%;
+                    height: 60%;
+                    flex-grow: 1;
+                    padding: 30px;
+                    overflow-y: auto;
+                    font-family: sans-serif;
+                    font-weight: lighter;
+                    margin: 20px;
+                    border: 2px solid #ddd; /* Added border */
+                    border-radius: 8px; /* Added border radius */
+                    margin-right: 10px; /* Added right margin */
+
+                h2{
+                    padding: 0;
+                    margin-top: -8px;
+                    margin-bottom: 10px;
+                    font-family: Arial, Helvetica, sans-serif;
+
+                    .bin-icon {
+
+                        &:hover {
+                            cursor: pointer;
+                        }
+                    }
+                }
+
+                .discretion{
+                    padding: 5px 10px;
+                    margin: 0;
+                }
+
+                .date{
+                    position: absolute;
+                    right: 0;
+                    bottom: 0;
+                    font-size: 12px;
+                    color: #ffffff;
+                    margin: 0;
+                    padding: 5px 10px;
+                    background-color: #9999999d;
+                }
+            }
+            }
+        }
+    }
+}

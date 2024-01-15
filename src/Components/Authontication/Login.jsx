@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./Login.css";
 import instance from "../../utility/AxiosInstance";
 import { useNavigate } from "react-router-dom";
+import Logo from '../../images/logo1923.png';
 
 export default function Login() {
   const [active, setActive] = useState("parent");
@@ -141,7 +142,7 @@ export default function Login() {
       <div className="login-container">
         <div className="login-card-container">
           <div className="card-header">
-            <h1 style={{ color: "red" }}>i-Growth</h1>
+            <img className="logo" src={Logo}/>
           </div>
           <div className="body-section">
             <form onSubmit={submitForm}>

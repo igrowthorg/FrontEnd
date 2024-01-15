@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import '../../public/news.scss'
+import './News.scss';
 import instance from '../../../utility/AxiosInstance';
 
 const NewsCard = (props) => {
@@ -51,7 +51,7 @@ const NewsFeed = (props) => {
     return (
         <div className="newsFeed-container">
             <div className="card-fram">
-                {news.map((item, index) => {
+                {news.map((item) => {
                     const date = item.date.split('T')[0];
                     return (
                         <div key={item.news_id}>

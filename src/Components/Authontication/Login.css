@@ -92,3 +92,8 @@
     cursor: pointer;
     background-color: orangered;
 }
+
+.login-container .login-card-container .card-header .logo{
+    height: 10vh;
+    width: 70%;
+}
