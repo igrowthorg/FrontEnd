@@ -9,12 +9,14 @@ import NewsFeed from '../public/NewsFeed'
 import instance from '../../utility/AxiosInstance'
 import SupperAdmin from './supperAdmin/SupperAdmin'
 
+// Functional component
 export default function Admin() {
     const navigation = useNavigate()
     const [active, setActive] = useState('midwife')
     const [authenticated, setAuthenticated] = useState(false);
     const [isSupperAdmin, setIsSupperAdmin] = useState(null);
 
+// Check authentication
     useEffect(() => {
         const checkAuth = async () => {
             try {
@@ -32,13 +34,14 @@ export default function Admin() {
                 }
             }
             catch (err) {
-                setAuthenticated(false)
+                setAuthenticated(false)    // If authentication fails, redirect to authentication page
                 console.log({ error: err })
                 navigation('/auth')
             }
         }
         checkAuth()
-    }, [active])
+    }, [active])  
+        // UseEffect runs only when 'active' changes
 
     if (isSupperAdmin === null) return <p>Loading...</p>
 
@@ -59,7 +62,10 @@ export default function Admin() {
                 </ul>
             </div>
             {/* <Midwife /> */}
+
+            {/* Render different components based on active section */}
             {
+                
                 active === 'midwife' ? <Midwife /> :
                     active === 'medical_officers' ? <MedicalOfficer /> :
                         active === 'addNews' ? <AddNews /> :
