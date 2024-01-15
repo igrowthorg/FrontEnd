@@ -142,129 +142,57 @@ export default function Profile() {
             <div className="left-header">
               <div className="inputField-cover">
                 <label>Guardian NIC : </label>
-                <input
-                  type="text"
-                  placeholder="Guardian NIC"
-                  disabled={true}
-                  value={profile.guardian_nic}
-                />
+                <input type="text" placeholder="Guardian NIC" disabled={true} value={profile.guardian_nic}/>
               </div>
               <div className="inputField-cover">
                 <label>Email : </label>
-                <input
-                  type="text"
-                  placeholder="Email"
-                  disabled={true}
-                  value={profile.email}
-                />
+                <input type="text" placeholder="Email" disabled={true} value={profile.email}/>
               </div>
               <div className="inputField-cover">
                 <label>Area : </label>
-                <input
-                  className="area"
-                  type="text"
-                  placeholder="Area"
-                  disabled={true}
-                  value={profile.area_name}
-                />
+                <input className="area" type="text" placeholder="Area" disabled={true} value={profile.area_name}/>
               </div>
             </div>
             <div className="left-body">
-              <form onSubmit={submit} id="officerUpdate">
+              <form onSubmit={submit} id="parentUpdate">
                 <div className="inputField-cover">
                   <label>Mother Name :</label>
-                  <input
-                    onChange={handleMotherName}
-                    value={motherName}
-                    type="text"
-                    id="mother-name"
-                    name="mother-name"
-                    required={true}
-                  />
+                  <input onChange={handleMotherName} value={motherName} type="text" id="mother-name" name="mother-name" required={true} />
                 </div>
 
                 <div className="inputField-cover">
                   <label>Father Name :</label>
-                  <input
-                    onChange={handleFatherName}
-                    value={fatherName}
-                    type="text"
-                    id="father-name"
-                    name="father-name"
-                    required={true}
-                  />
+                  <input onChange={handleFatherName} value={fatherName} type="text" id="father-name" name="father-name" required={true} />
                 </div>
 
                 <div className="inputField-cover">
                   <label>Guardian Name :</label>
-                  <input
-                    onChange={handleGuardianName}
-                    value={guardianName}
-                    type="text"
-                    id="father-name"
-                    name="guardian-name"
-                    required={true}
-                  />
+                  <input onChange={handleGuardianName} value={guardianName} type="text" id="father-name" name="guardian-name" required={true} />
                 </div>
 
                 <div className="inputField-cover">
                   <label>Phone number :</label>
-                  <input
-                    onChange={handlePhone}
-                    value={phone}
-                    type="text"
-                    id="phone"
-                    name="phone"
-                    required={true}
-                  />
+                  <input onChange={handlePhone} value={phone} type="text" id="phone" name="phone" required={true} />
                 </div>
 
                 <div className="inputField-cover">
                   <label>Address :</label>
-                  <input
-                    onChange={handleAddress}
-                    value={address}
-                    type="text"
-                    id="address"
-                    name="address"
-                    required={true}
-                  />
+                  <input onChange={handleAddress} value={address} type="text" id="address" name="address" required={true} />
                 </div>
 
                 <div className="inputField-cover">
                   <label>Current Password :</label>
-                  <input
-                    value={oldPass}
-                    onChange={handleOldPassword}
-                    type="text"
-                    placeholder="Current Password"
-                    id="current-password"
-                    name="current-password"
-                  />
+                  <input value={oldPass} onChange={handleOldPassword} type="text" placeholder="Current Password" id="current-password" name="current-password" />
                 </div>
 
                 <div className="inputField-cover">
                   <label>New Password :</label>
-                  <input
-                    value={newPass}
-                    onChange={handleNewPassword}
-                    type="password"
-                    placeholder="New Password"
-                    id="new-password"
-                    name="new-password"
-                  />
+                  <input value={newPass} onChange={handleNewPassword} type="password" placeholder="New Password" id="new-password" name="new-password" />
                 </div>
 
                 <div className="inputField-cover">
                   <label>Confirm Password :</label>
-                  <input
-                    value={confirmPass}
-                    onChange={handleConfirmPassword}
-                    type="password"
-                    placeholder="Confirm Password"
-                    id="confirm-password"
-                    name="confirm-password"
-                  />
+                  <input value={confirmPass} onChange={handleConfirmPassword} type="password" placeholder="Confirm Password" id="confirm-password" name="confirm-password"  />
                 </div>
 
                 <div className="profile-update-btn">
