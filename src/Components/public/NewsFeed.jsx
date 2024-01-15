@@ -5,9 +5,11 @@ import instance from '../../utility/AxiosInstance';
 
 const NewsCard = (props) => {
     const deleteNews = async () => {
+         // Check if the user can delete news
         const hasPrivilege = props.user === 'admin' || props.user === 'midwife' || props.user === 'officer';
 
         if (hasPrivilege) {
+            //confirmation before deleting
             const confirmDelete = window.confirm(`Are you sure, you want to delete "${props.title}"?`);
 
             if (confirmDelete) {
@@ -39,11 +41,14 @@ const NewsCard = (props) => {
     return (
         <div className="news">
             <div className="image">
+                {/* Display the news image */}
                 <img src={`http://localhost:3005/public/image/${props.image}`} alt="sample_image" />
             </div>
 
             <div className="content">
             <div className='sub_content'>
+
+                {/* Display news delete icon for privilege users */}
                 <h2 style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                     {props.title} <CiTrash color="red" size={22} className="bin-icon" onClick={deleteNews} />
                 </h2>
@@ -56,6 +61,7 @@ const NewsCard = (props) => {
     );
 };
 
+//Displaying a list of news
 const NewsFeed = (props) => {
     const [news, setNews] = useState([]);
     const [trigger, setTrigger] = useState(false);
@@ -74,6 +80,7 @@ const NewsFeed = (props) => {
         getAllNews();
     }, [trigger]);
 
+    // Display message if there are no news 
     if(news.length === 0){
         return(
             <div className='newsFeed-container'>
@@ -91,6 +98,7 @@ const NewsFeed = (props) => {
                     const date = item.date.split('T')[0];
                     return (
                         <div key={item.news_id}>
+                        {/* Render NewsCard for each news */}
                             <NewsCard
                                 title={item.title}
                                 trigger={setTrigger}

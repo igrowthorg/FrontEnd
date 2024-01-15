@@ -4,10 +4,11 @@ import instance from '../../utility/AxiosInstance'
 
 const AddNews = () => {
 
+    //Handle Form Submission 
     const submit = async (e) => {
         e.preventDefault();
 
-
+        //Form Data Preparation
         const formData = {
             title: e.target['news-title'].value,
             summary: e.target['news-content'].value,
@@ -27,6 +28,7 @@ const AddNews = () => {
 
             if (res.status === 200) {
                 alert('Item Added Successfully');
+                // Reset the form
                 document.getElementById("news-send").reset();
             }
         }
@@ -37,6 +39,7 @@ const AddNews = () => {
     }
 
     return (
+        //Add news container
         <div className='addNew-container'>
             <div id='add-news'>
                 <h3>Add News</h3>
