@@ -24,7 +24,7 @@ export default function OfficerComponent() {
             catch (err) {
                 setAuthenticated(false)
                 console.log({ error: err })
-                navigation('/auth')
+                navigation('/')
             }
         }
         checkAuth()

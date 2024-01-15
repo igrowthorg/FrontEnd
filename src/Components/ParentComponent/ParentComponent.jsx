@@ -1,13 +1,36 @@
-import React, { useState } from 'react'
+import React, {useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import instance from '../../utility/AxiosInstance'
 import './ParentComponent.scss'
 import Cover from '../cover/cover'
+import NewsFeed from './NewsFeed/News'
 import Profile from './Profile/profile'
 import BabyDetails from './BabyDetails/babyDetails'
 
-export default function MinwifeComponent() {
-  const [active, setActive] = useState('')
-  return (
-    <div className='midwifeComponent-container'>
+export default function ParentComponent() {
+  const navigation = useNavigate()
+
+  const [authenticated, setAuthenticated] = useState(false)
+  const [active, setActive] = useState('measure')
+
+  useEffect(() => {
+    const checkAuth = async () => {
+      try {
+        const res = await instance.get('/parent/check-auth')
+        console.log(res.data)
+        setAuthenticated(true)
+      }
+      catch (err) {
+        setAuthenticated(false)
+        console.log({ error: err })
+        navigation('/')
+      }
+    }
+    checkAuth()
+  }, [active])
+
+  if (authenticated) return (
+    <div className='parentComponent-container'>
       <Cover />
       <div className='navigation-container'>
         <ul>
@@ -20,7 +43,7 @@ export default function MinwifeComponent() {
       {
                 active === 'child-details' ? <BabyDetails />:              
                 active === 'profile' ? <Profile/>:
-                 active === 'news-feed' ? <p>News Feed</p> : null
+                 active === 'news-feed' ? <NewsFeed/> : null
       }
     </div>
   )
