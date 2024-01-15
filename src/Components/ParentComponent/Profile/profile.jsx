@@ -139,22 +139,23 @@ export default function Profile() {
         </div>
         <div className="profile-bottom">
           <div className="buttom-left">
-            <div className="left-header">
-              <div className="inputField-cover">
-                <label>Guardian NIC : </label>
-                <input type="text" placeholder="Guardian NIC" disabled={true} value={profile.guardian_nic}/>
-              </div>
-              <div className="inputField-cover">
-                <label>Email : </label>
-                <input type="text" placeholder="Email" disabled={true} value={profile.email}/>
-              </div>
-              <div className="inputField-cover">
-                <label>Area : </label>
-                <input className="area" type="text" placeholder="Area" disabled={true} value={profile.area_name}/>
-              </div>
-            </div>
             <div className="left-body">
               <form onSubmit={submit} id="parentUpdate">
+                <div className="inputField-cover">
+                  <label>Guardian NIC : </label>
+                  <input type="text" placeholder="Guardian NIC" disabled={true} value={profile.guardian_nic}/>
+                </div>
+
+                <div className="inputField-cover">
+                  <label>Email : </label>
+                  <input type="text" placeholder="Email" disabled={true} value={profile.email}/>
+                </div>
+
+                <div className="inputField-cover">
+                  <label>Area : </label>
+                  <input className="area" type="text" placeholder="Area" disabled={true} value={profile.area_name}/>
+                </div>
+
                 <div className="inputField-cover">
                   <label>Mother Name :</label>
                   <input onChange={handleMotherName} value={motherName} type="text" id="mother-name" name="mother-name" required={true} />
