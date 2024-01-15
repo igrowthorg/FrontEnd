@@ -64,7 +64,7 @@ const SupperAdmin = () => {
             <div className="card-fram" key={key}>
               <p className='user-name'>{data.username}</p>
               <p>{data.email}</p>
-              <p>{data.area_name}</p>
+              <p>{data.district_name}</p>
             </div>
           ))}
 

@@ -53,7 +53,7 @@ export default function MidwifeAdd(props) {
 
             if (res.status === 200) {
                 props.setDisplayMidwifeAdd(false);
-                // alert('Item Added Successfully');
+                alert('Midwife Added Successfully');
             }
         } catch (err) {
             console.log(err.response.data.message);
