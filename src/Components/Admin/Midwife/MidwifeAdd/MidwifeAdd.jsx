@@ -26,6 +26,31 @@ export default function MidwifeAdd(props) {
         console.log(selectedArea);
     };
 
+    const checkNICValidity = (nic) => {
+        if(nic.length === 10 || nic.length === 12){
+            if(nic.length === 10){
+                if(nic[9] === 'V' || nic[9] === 'v'){
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            }
+            if(nic.length === 12){
+                return true;
+            }
+        }
+        else{
+            return false;
+        }
+    }
+
+    const isValidMobileNumber = (phone) => {
+        const mobileNumberRegex = /^(071|074|070|076)\d{7}$/;
+        return mobileNumberRegex.test(phone);
+      };
+      
+
     const submit = async (e) => {
         e.preventDefault();
 
@@ -47,6 +72,7 @@ export default function MidwifeAdd(props) {
             area_id: selectedArea
         }
 
+        if(checkNICValidity(formData.nic) && isValidMobileNumber(formData.phone) ){         
         try {
             const res = await instance.post('/admin/create-midwife', formData);
             props.setTrigger((prevTrigger) => !prevTrigger);
@@ -62,6 +88,16 @@ export default function MidwifeAdd(props) {
             setIsWaiting(false);
         }
     }
+        else if (!checkNICValidity(formData.nic)) {
+        alert("Please enter a valid NIC");
+        setIsWaiting(false);
+        document.getElementById('midwife-nic').focus();
+      } else if (!isValidMobileNumber(formData.phone)) {
+        alert("Please enter a valid phone number");
+        setIsWaiting(false);
+        document.getElementById('midwife-mobile').focus();
+      }
+}
 
 
     return (
