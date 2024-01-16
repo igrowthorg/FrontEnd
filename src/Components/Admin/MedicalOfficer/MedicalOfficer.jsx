@@ -11,6 +11,7 @@ export default function MedicalOfficer() {
         { name: "Email", value: "Thambala", type: "email" },
     ]
 
+    // State variables for managing component state
     const [trigger, setTrigger] = useState(false);
 
     const [getArea, setGetArea] = useState([]);
@@ -39,6 +40,7 @@ export default function MedicalOfficer() {
 
     const [serviceId, setServiceId] = useState("");
 
+    // Event handlers for input changes
     const handlemedicalOfficerNameChange = (e) => {
         setMedicalOfficerName(e.target.value);
     };
@@ -64,10 +66,12 @@ export default function MedicalOfficer() {
     }
     // formData.append('area_id', selectedArea);
 
+    // Show Medical Officer Add form
     function showCode() {
         setDisplayMedicalOfficerAdd(true);
     }
 
+    // Event handler for viewing details Medi
     const handleViewDetail = (midwifes) => {
         setSelectedMedicalOfficer(midwifes);
         setShowDetail(true);
@@ -78,6 +82,7 @@ export default function MedicalOfficer() {
         setShowDetail(false);
     }
 
+    // Updating Medical Officer details
     const handleUpdateWindow = (midwifes) => {
         setMedicalOfficerName(midwifes.officer_name);
         setNic(midwifes.nic);
