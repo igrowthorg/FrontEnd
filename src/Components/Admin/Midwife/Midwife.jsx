@@ -6,11 +6,6 @@ import instance from '../../../utility/AxiosInstance'
 
 export default function Mifwife() {
 
-    const data = [
-        { name: "Name", value: "Kagalugama", type: "text" },
-        { name: "Email", value: "Thambala", type: "email" },
-    ]
-
     const [trigger, setTrigger] = useState(false);
 
     const [getArea, setGetArea] = useState([]);

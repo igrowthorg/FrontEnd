@@ -171,7 +171,7 @@
     cursor: pointer;
 }
 
-&:hover {
+.login-container .right-side .bmi-calculator button &:hover {
     background-color: #45a049;
 }
     
