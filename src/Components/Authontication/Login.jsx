@@ -3,6 +3,7 @@ import "./Login.css";
 import instance from "../../utility/AxiosInstance";
 import { useNavigate } from "react-router-dom";
 import Logo from '../../images/logo1923.png';
+import Shape from '../../images/shape.png';
 
 export default function Login() {
   const [active, setActive] = useState("parent");
@@ -137,9 +138,30 @@ export default function Login() {
     }
   };
 
+  const [weight, setWeight] = useState('');
+  const [height, setHeight] = useState('');
+  const [bmi, setBmi] = useState(null);
+
+  const calculateBmi = () => {
+    if (weight && height) {
+      const heightInMeters = height / 100;
+      const bmiValue = (weight / (heightInMeters * heightInMeters)).toFixed(2);
+      setBmi(bmiValue);
+    } else {
+      setBmi(null);
+    }
+  };
+
+  const clear = () => {
+    setBmi(null);
+    setHeight('');
+    setWeight('');
+  };
+
   if (!loading)
     return (
       <div className="login-container">
+        <div className="left-side">
         <div className="login-card-container">
           <div className="card-header">
             <img className="logo" src={Logo}/>
@@ -190,6 +212,26 @@ export default function Login() {
                 <input type="submit" value="Login" />
               </div>
             </form>
+          </div>
+        </div>
+        </div>
+        <div className="right-side">
+          <div className="shape">
+            <img src={Shape} alt='shape'/>
+          </div>
+          <div className="bmi-calculator">
+            <label>Weight (kg):
+              <input type="number" value={weight} onChange={(e) => setWeight(e.target.value)} />
+            </label>
+            <label>Height (cm):
+              <input type="number" value={height} onChange={(e) => setHeight(e.target.value)} />
+            </label>
+            <div className="btn-align">
+            <button onClick={calculateBmi}>Calculate BMI</button>
+            <button onClick={clear}>Clear</button>
+            </div>
+             <p>The BMI is: {bmi}</p>
+             
           </div>
         </div>
       </div>
