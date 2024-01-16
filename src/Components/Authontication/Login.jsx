@@ -76,7 +76,7 @@ export default function Login() {
     const password = e.target.password.value;
 
     if (username && password) {
-      if (active === "admin") {
+      if (active === "admin") { 
         instance
           .post("/admin/login", {
             username: username,
