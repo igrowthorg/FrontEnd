@@ -50,7 +50,11 @@ export default function MedicalOfficerAdd(props) {
         const mobileNumberRegex = /^(071|074|070|076)\d{7}$/;
         return mobileNumberRegex.test(phone);
       };
-      
+    
+    const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
 
     const submit = async (e) => {
         e.preventDefault();
@@ -139,3 +143,5 @@ export default function MedicalOfficerAdd(props) {
         </div>
     )
 }
+
+
