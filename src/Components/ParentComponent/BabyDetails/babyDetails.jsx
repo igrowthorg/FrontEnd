@@ -199,6 +199,7 @@ export default function BabyDetail() {
                                                 </div>
                                             )}
                                         </tr>
+                                        
                                     )
                                 }
                             })

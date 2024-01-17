@@ -11,7 +11,7 @@ export default function ParentComponent() {
   const navigation = useNavigate()
 
   const [authenticated, setAuthenticated] = useState(false)
-  const [active, setActive] = useState('measure')
+  const [active, setActive] = useState('news-feed')
 
   useEffect(() => {
     const checkAuth = async () => {
