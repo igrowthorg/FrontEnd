@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './BabyDetails.scss'
+import './babyDetails.scss'
 import { AiFillCloseCircle } from 'react-icons/ai'
 import instance from '../../../utility/AxiosInstance'
 
