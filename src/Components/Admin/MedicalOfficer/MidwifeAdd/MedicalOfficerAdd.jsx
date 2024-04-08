@@ -120,6 +120,8 @@ export default function MedicalOfficerAdd(props) {
                         <div className="input-wrapper">
                             <select className='inputfieds' style={{ height: '35px', width: '91%' }} id='select_area_002' onChange={handleAreaChange}>
                                 <option value="select_area" style={{ display: 'none' }}>Select an Area</option>
+                                <option value="homagama">Homagama</option>
+                                <option value="moratuwa">Moratuwa</option>
                                 {getArea.length > 0 && getArea.map(area => (
                                     <option key={area.area_id} value={area.area_id}>{area.area_name}</option>
                                 ))}

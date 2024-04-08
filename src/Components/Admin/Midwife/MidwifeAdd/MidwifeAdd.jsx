@@ -116,7 +116,9 @@ export default function MidwifeAdd(props) {
                                 <option value="otherOption">Login As a Medical Officer</option>
                             </select> */}
                             <select className='inputfieds' style={{ height: '35px', width: '91%' }} id='select_area_001001' onChange={handleAreaChange}>
-                                <option style={{ display: 'none' }} value="Select_an_Area">Select an Area</option>
+                                <option  value="Select_an_Area">Select an Area</option>
+                                <option value="homagama">Homagama</option>
+                                <option value="moratuwa">Moratuwa</option>
                                 {getArea.map(area => (
                                     <option key={area.area_id} value={area.area_id}>{area.area_name}</option>
                                 ))}
